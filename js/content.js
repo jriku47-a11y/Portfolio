@@ -204,86 +204,134 @@ const PORTFOLIO = {
     {
       number: 1,
       published: true,
-      title: "Personal Portfolio Website",
+      title: "Salon Management & Booking System",
       category: "Web Application",
-      type: "Personal Project",
-      role: "Sole developer — I designed, built, styled, and wired up the backend.",
+      type: "Web Application",
+      role: "[ Replace this: say which parts you actually built or owned — modules, screens, or fixes. Do not claim the whole system unless it was yours. ]",
       overview:
-        "A single-page professional portfolio built to present my background, skills, and work to instructors, internship coordinators, and recruiters. It is the site you are reading now.",
+        "A web system that runs a salon day to day: customers browse services and book a date and time, staff log their work and submit it for approval, and admins manage the schedule, point of sale, inventory and staff accounts from one dashboard.",
       problem:
-        "As a student I had no single place to present my background and projects in a form a recruiter could actually read in under a minute.",
+        "Salon bookings, staff hours and daily sales were being handled across separate places, so scheduling, stock levels and staff performance were hard to see and easy to get wrong.",
       solution:
-        "A fast, accessible single-page site with clear section navigation, a case-study format for projects, a working contact form backed by a real PHP mail endpoint, and a layout that holds up from 320 px phones to wide desktop monitors.",
+        "Two connected applications on one shared database — a customer-facing booking site and a staff/admin back office — with role-based and feature-based access so each person only sees what their account allows.",
       process: [
-        "Outlined the sections a reviewer needs, in order",
-        "Built the design system first — colour, spacing, and type tokens",
-        "Wrote semantic markup for every section",
-        "Added responsive CSS, then checked narrow viewports before desktop",
-        "Implemented navigation, scroll reveal, accordions, and form validation",
-        "Wired the contact form to a PHP backend that keeps mail secrets on the server",
-        "Tested links, keyboard access, and mobile behaviour"
+        "Modelled the data first: services, staff, accounts, permissions, bookings, sales and reports",
+        "Built the customer-facing site — service selection, availability check, booking form and confirmation email",
+        "Built the back office — dashboards, point of sale, inventory CRUD and sales reports",
+        "Added the staff side: daily report drafting, submission and admin approval",
+        "Moved reporting out of the pages and into SQL views so the same numbers back every screen",
+        "Wrote an installation guide so the system can be rebuilt on another machine from scratch"
       ],
       challenges: [
         {
-          challenge: "A contact form that only pretends to send mail.",
+          challenge: "Two applications, one database.",
           solution:
-            "The form posts to a PHP endpoint with server-side validation, a honeypot, and rate limiting. A success message appears only when the mail service confirms acceptance — otherwise it tells the visitor the message was not sent."
+            "The public site connects with MySQLi while the back office uses PDO. Both point at the same <span class=\"mono\">salon_management</span> schema, so a booking made on the site is immediately visible to staff and admins. The dual access styles are the clearest thing I would standardise if I revisited this."
         },
         {
-          challenge: "Keeping mail credentials out of public code.",
+          challenge: "Staff needed different menus, not just different roles.",
           solution:
-            "Secrets load server-side from a gitignored config file or environment variables. Nothing sensitive is ever exposed in the browser."
+            "Permissions are stored per account and the staff sidebar is built from those flags, so a staff member with only point-of-sale access sees only that link. Guard functions block the page itself, not just the link."
         },
         {
-          challenge: "Making a dense page readable on a small phone.",
+          challenge: "An older accounts table had to keep working while a new one was introduced.",
           solution:
-            "Fluid grids collapse to a single column, tap targets stay at least 44 px, and long content like tables scrolls inside its own container so the page never scrolls sideways."
+            "Authentication tries the new accounts table first and falls back to the legacy one, so existing logins kept working through the change instead of breaking on deploy day."
         }
       ],
       features: [
-        "Sticky navigation with active-section highlighting",
-        "Mobile menu that closes on selection",
-        "Scroll-reveal animations that respect reduced-motion preferences",
-        "Accessible accordions and expandable case studies",
-        "Validated contact form with real server-side delivery",
-        "Skip-to-content link and visible keyboard focus states",
-        "Back-to-top control"
+        "Customer registration and login",
+        "Service browsing with price and duration",
+        "Booking with date, time and therapist selection",
+        "Booking reference codes and a pending / confirmed / cancelled / completed status flow",
+        "Confirmation email through PHPMailer",
+        "Admin dashboard with sales, customer and staff overview",
+        "Point of sale for products and services",
+        "Inventory management with low-stock thresholds",
+        "Sales reports filterable by date range",
+        "Staff management with per-account feature permissions",
+        "Staff daily reports with an admin approval step",
+        "In-app notifications for pending sales and submissions",
+        "Reporting views: daily sales summary, low stock, pending sales, staff performance"
       ],
-      technologies: ["HTML5", "CSS3", "Vanilla JavaScript", "PHP 8", "PHPMailer", "Git", "GitHub Pages"],
-      repo: "https://github.com/jriku47-a11y/Portfolio",
-      demo: "",
-      docs: "https://github.com/jriku47-a11y/Portfolio#readme",
-      screenshot: "",
-      lessons:
-        "Building the design system first is what kept the page consistent. Writing the backend before the success message is what kept me honest — the form can only say it succeeded when the mail service actually accepted the message."
-    },
-
-    /* ------------------------------------------------------------
-       Reserved slots for Project 2 and Project 3.
-       Replace the placeholder values with a real project and set
-       published: true. While published is false nothing is shown,
-       so the page never advertises work that does not exist.
-       ------------------------------------------------------------ */
-    {
-      number: 2,
-      published: false,
-      title: "Project 2 — to be added",
-      category: "",
-      type: "",
-      role: "",
-      overview: "",
-      problem: "",
-      solution: "",
-      process: [],
-      challenges: [],
-      features: [],
-      technologies: [],
+      technologies: ["PHP", "MySQL (MariaDB)", "MySQLi", "PDO", "HTML5", "CSS3", "JavaScript", "PHPMailer", "Apache / XAMPP"],
       repo: "",
       demo: "",
       docs: "",
       screenshot: "",
-      lessons: ""
+      lessons:
+        "Access control is easier to get right when the page and the link are both gated — hiding a menu item is not security. Passwords are hashed with bcrypt and every query is a prepared statement, but this build has no CSRF tokens and the database password was left in a config file. Both belong at the top of my list to fix next."
     },
+
+    {
+      number: 2,
+      published: true,
+      title: "IT Equipment Inventory Analytics",
+      category: "Database / Data Analysis",
+      type: "Data Analysis Project",
+      role: "[ Replace this: say what you did yourself — cleaning the workbook, writing the schema, or writing the queries. ]",
+      overview:
+        "A SQLite database built from a 50-record IT equipment workbook, with queries that turn a flat list of purchases into the numbers a department actually needs to make a replacement decision.",
+      problem:
+        "The equipment list existed as a spreadsheet: 50 rows of asset ID, type, brand, condition, age, quantity, cost, warranty and department. Nothing in it answered the questions that matter — what is the estate worth, how much is failing, and which items are broken with no warranty left to cover them.",
+      solution:
+        "A schema with constraints that reject bad data on entry, plus three queries: headline inventory KPIs, a value-ranked equipment breakdown, and a maintenance-risk query that isolates the worst records.",
+      process: [
+        "Read the workbook and decided what each column should be and what it is allowed to contain",
+        "Defined the table with PRIMARY KEY, NOT NULL and CHECK constraints so bad rows are rejected at insert rather than discovered later",
+        "Loaded all 50 cleaned records",
+        "Wrote Query 1 for the headline KPIs, defining acquisition value as quantity × unit_cost",
+        "Wrote Query 2 to rank equipment types by value rather than by row count",
+        "Wrote Query 3 to cross-reference condition, warranty and age and find the genuinely risky records"
+      ],
+      challenges: [
+        {
+          challenge: "Row count is not the same as value.",
+          solution:
+            "Counting records makes projectors look like the biggest problem at 11 rows, but by acquisition value routers come first at PHP 2,402,000 across 70 units. Ranking by <span class=\"mono\">SUM(quantity * unit_cost)</span> rather than <span class=\"mono\">COUNT(*)</span> changed which department looks urgent."
+        },
+        {
+          challenge: "\"Needs repair\" on its own is too broad to act on.",
+          solution:
+            "12 records and PHP 2,482,000 of equipment are flagged as needing repair, but only 3 records — PHP 675,000, 7.4% of the estate — are also out of warranty. Filtering on both conditions turns a large worry into a short, fundable list: A8049, A8014, A8011."
+        }
+      ],
+      features: [
+        "Single inventory_assets table with a PRIMARY KEY on asset_id",
+        "CHECK constraints on age, quantity, costs and the warranty flag",
+        "50 cleaned records loaded from the source workbook",
+        "Query 1 — headline KPIs across the whole estate",
+        "Query 2 — equipment types ranked by acquisition value",
+        "Query 3 — maintenance risk and ageing asset base",
+        "Runs as-is in the SQLite CLI or DB Browser for SQLite"
+      ],
+      technologies: ["SQLite", "SQL", "DB Browser for SQLite"],
+      /* Every figure below was produced by running the SQL file linked
+         above. Regenerate and edit here if the dataset changes. */
+      results: [
+        { label: "Asset records", value: "50" },
+        { label: "Total units", value: "279" },
+        { label: "Acquisition value", value: "PHP 9,168,000" },
+        { label: "Maintenance to date", value: "PHP 115,182" },
+        { label: "Needs Repair", value: "12 records · PHP 2,482,000" },
+        { label: "Out of warranty", value: "14 records" },
+        { label: "Repair AND no warranty", value: "3 records · PHP 675,000" },
+        { label: "Highest-value type", value: "Router · PHP 2,402,000" }
+      ],
+      repo: "https://github.com/jriku47-a11y/Portfolio/blob/main/projects/it-equipment-inventory/inventory_analytics.sql",
+      demo: "",
+      docs: "https://github.com/jriku47-a11y/Portfolio/blob/main/projects/it-equipment-inventory/inventory_analytics.sql",
+      screenshot: "",
+      lessons:
+        "The schema earns its keep only when it refuses bad data: the CHECK constraints stop a negative cost or an invalid warranty value from ever entering the table. The other lesson was about reading the result — the numbers were already in the data, but ranking by value instead of row count is what made them useful."
+    },
+
+    /* ------------------------------------------------------------
+       Reserved slot for Project 3.
+       Replace the placeholder values with a real project and set
+       published: true. While published is false nothing is shown,
+       so the page never advertises work that does not exist.
+       ------------------------------------------------------------ */
     {
       number: 3,
       published: false,

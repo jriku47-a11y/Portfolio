@@ -457,6 +457,22 @@ details.case[open] summary{border-bottom:1px solid var(--rule)}
   border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:.8rem 1rem;margin:.55rem 0;
   font-size:.9rem;line-height:1.65;
 }
+/* verified results strip inside a case study */
+.stat-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.6rem;margin:.2rem 0 0;
+}
+.stat-grid > div{
+  background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius-sm);
+  padding:.65rem .8rem;
+}
+.stat-grid dt{
+  font-family:var(--font-mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--muted-2);margin:0 0 .25rem;
+}
+.stat-grid dd{
+  margin:0;font-size:.98rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;
+  font-variant-numeric:tabular-nums;
+}
 
 /* ============================================================
    ACCORDION (problem-solving cases)

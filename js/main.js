@@ -207,10 +207,16 @@
         ${(p.technologies || []).length
           ? `<div class="tag-row">${p.technologies.map((t) => `<span class="tag">${t}</span>`).join("")}</div>`
           : ""}
-        ${(p.features || []).length || p.process || (p.challenges || []).length || p.lessons
+        ${(p.features || []).length || p.process || (p.challenges || []).length || p.lessons || (p.results || []).length
           ? `<details class="case">
               <summary>Full case study: scope, process, challenges, lessons</summary>
               <div class="case-body">
+                ${(p.results || []).length
+                  ? `<h4 class="case-h">Results</h4>
+                     <dl class="stat-grid">${p.results
+                       .map((r) => `<div><dt>${r.label}</dt><dd>${r.value}</dd></div>`)
+                       .join("")}</dl>`
+                  : ""}
                 ${p.features && p.features.length ? `<h4 class="case-h">Key features</h4>${bullets(p.features)}` : ""}
                 ${p.process && p.process.length ? `<h4 class="case-h">Development process</h4>${ordered(p.process)}` : ""}
                 ${(p.challenges || []).length

@@ -102,16 +102,33 @@ to match, so screen readers announce the current state.
 
 ```
 index.html            All 13 sections (semantic markup + accessibility)
-css/style.css         Design system: tokens, layout, components, responsive rules
+css/style.css         Design system: tokens, layout, components, light + dark themes
 js/content.js         SINGLE SOURCE OF TRUTH — edit this to change content
 js/main.js            Renders content from config + all interactions
 api/contact.php       Contact endpoint (validation, honeypot, rate limiting, sending)
 api/config.example.php Safe config template (all values empty)
 api/config.local.php  YOUR mail credentials — gitignored, never committed
 api/lib/              Bundled PHPMailer (Exception, PHPMailer, SMTP)
+projects/             Runnable project artifacts (e.g. the inventory SQL)
 assets/               Your images and resume.pdf go here
 .nojekyll             Tells GitHub Pages to serve the files as-is
 ```
+
+---
+
+## Project artifacts
+
+Some projects ship a runnable artifact inside this repository so the work can be
+inspected without leaving the page.
+
+```
+projects/it-equipment-inventory/inventory_analytics.sql
+```
+
+Self-contained SQLite file: schema, constraints, 50 cleaned records and three
+queries. Open it in the SQLite CLI or DB Browser for SQLite and it runs as-is.
+Every figure quoted in that project's case study was produced by executing this
+file, so the claims on the site are reproducible rather than asserted.
 
 ---
 
