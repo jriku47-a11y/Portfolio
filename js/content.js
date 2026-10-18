@@ -339,6 +339,86 @@ const PORTFOLIO = {
     {
       number: 3,
       published: true,
+      title: "DevForge — Web Development Portfolio and Project Showcase",
+      category: "Web Application",
+      type: "Specialization Project",
+      role:
+        "Designed and built the whole application: the token-based design system, every component, the config-driven rendering layer, the task manager's storage schema, and the 185-check automated test suite that drives it.",
+      overview:
+        "My IT Web Development Specialization project: a working developer portfolio where nothing is a mock-up. Every filter filters, the search box searches, the task manager stores real records in the browser, and the contact form refuses to claim success unless the mail service confirms it.",
+      problem:
+        "A portfolio that only shows pictures of work proves nothing — an evaluator should be able to press the buttons and see real behaviour. I also had no low-risk place to practise the full front-end interaction cycle (filtering, validation, persistence) before doing it in a production system.",
+      solution:
+        "A single-page application with a dark navy design system built on custom properties, filterable project cards, an accessible detail dialog, a functional task manager persisted in localStorage with a versioned schema, and a validated contact form — all hand-written HTML, CSS and JavaScript with no build step, so it runs anywhere and deploys to GitHub Pages unchanged.",
+      process: [
+        "Listed what an evaluator must be able to do in the first 60 seconds and turned that into a section list",
+        "Wireframed the hero, project grid and task manager before writing any CSS",
+        "Defined the colour, spacing and typography tokens first so every component inherits one rhythm",
+        "Built markup, then styles, then behaviour — in that order, for each component",
+        "Moved all content into a single config file and added the versioned storage layer",
+        "Wrote an accessibility pass: landmarks, labels, focus order, live regions, reduced motion",
+        "Automated the filters, task manager and validation, then checked 13 viewport widths from 320px to 1920px",
+        "Deployed to GitHub Pages and re-ran the same test suite against the live URL"
+      ],
+      challenges: [
+        {
+          challenge:
+            "A task manager that resets on reload would have proven nothing, which is exactly the fake-feeling demo I wanted to avoid.",
+          solution:
+            "Added a versioned storage schema, guarded every read against corrupt JSON, and put a visible progress counter on screen so the behaviour is obvious to a reviewer."
+        },
+        {
+          challenge:
+            "The layout overflowed horizontally at 320px because an auto-fit grid track was pinned to a 320px minimum.",
+          solution:
+            "Changed every auto-fit grid to minmax(min(320px, 100%), 1fr) so a track can shrink below its minimum, and added a regression test that fails if a bare pixel minmax returns."
+        },
+        {
+          challenge:
+            "A detail dialog that traps no focus lets keyboard users wander into the page behind it.",
+          solution:
+            "Used the native <dialog> element, moved focus in on open, closed it on Escape and a backdrop click, and returned focus to the card that opened it."
+        },
+        {
+          challenge:
+            "The contact form could have lied about sending.",
+          solution:
+            "The success message appears only when the relay confirms acceptance; a rejection, a missing success flag or a network error all report that nothing was sent and point to GitHub or LinkedIn."
+        }
+      ],
+      features: [
+        "Four working project filters — All, Front-End, Full-Stack, UI/UX — with live result counts",
+        "Accessible project detail dialog with problem, approach, outcome and lessons",
+        "Functional task manager: add, edit, complete, reopen, delete with confirmation, search and status filters",
+        "Versioned localStorage persistence that survives corrupt or wrong-shaped data",
+        "Progress bar, completion counters and two distinct empty states",
+        "Validated contact form with inline errors, a honeypot trap and honest success states",
+        "Dark navy identity with a light theme that is remembered between visits",
+        "185 automated checks covering rendering, filters, task CRUD, validation, accessibility and privacy"
+      ],
+      technologies: [
+        "HTML5",
+        "CSS3",
+        "Vanilla JavaScript (ES2020+)",
+        "localStorage",
+        "Web3Forms",
+        "jsdom",
+        "Git",
+        "GitHub Pages"
+      ],
+      repo: "https://github.com/jriku47-a11y/Project-3",
+      demo: "https://jriku47-a11y.github.io/Project-3/",
+      docs: "https://github.com/jriku47-a11y/Project-3#readme",
+      demoNote:
+        "Runs entirely on GitHub Pages with no build step and no database. The task manager stores data in the visitor's browser, so the live demo can be used without an account. The same test suite passes against the deployed URL.",
+      screenshot: "assets/projects/devforge-hero.jpg",
+      lessons:
+        "Writing the tests before styling forced me to decide what each control should actually do. And the bugs that mattered were never visual — they were the grid that overflowed at 320px and the storage read that could have wiped someone's tasks."
+    },
+
+    {
+      number: 4,
+      published: true,
       title: "Personal Portfolio Website",
       category: "Web Application",
       type: "Personal Project",
@@ -402,9 +482,9 @@ const PORTFOLIO = {
        so the page never advertises work that does not exist.
        ------------------------------------------------------------ */
     {
-      number: 4,
+      number: 5,
       published: false,
-      title: "Project 4 — to be added",
+      title: "Project 5 — to be added",
       category: "",
       type: "",
       role: "",
