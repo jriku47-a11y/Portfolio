@@ -584,6 +584,56 @@
     });
   }
 
+  /* ============================================================
+     THEME TOGGLE
+     The <head> script sets data-theme before first paint. Here we
+     wire the button: flip the theme, remember the choice, and keep
+     following the OS setting until the visitor chooses explicitly.
+     ============================================================ */
+  const THEME_KEY = "theme";
+
+  function currentTheme() {
+    return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  }
+
+  function initTheme() {
+    const btn = $("#themeToggle");
+    const root = document.documentElement;
+
+    const label = () => {
+      if (!btn) return;
+      const dark = currentTheme() === "dark";
+      btn.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+      btn.setAttribute("aria-pressed", dark ? "true" : "false");
+      btn.setAttribute("title", dark ? "Switch to light theme" : "Switch to dark theme");
+    };
+
+    label();
+
+    if (btn) {
+      btn.addEventListener("click", () => {
+        const next = currentTheme() === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* storage blocked */ }
+        label();
+      });
+    }
+
+    // Follow the OS only while the visitor has not made an explicit choice.
+    if (typeof window.matchMedia === "function") {
+      const mq = window.matchMedia("(prefers-color-scheme: dark)");
+      const onChange = (e) => {
+        let saved = null;
+        try { saved = localStorage.getItem(THEME_KEY); } catch (err) { /* storage blocked */ }
+        if (saved) return;
+        root.setAttribute("data-theme", e.matches ? "dark" : "light");
+        label();
+      };
+      if (typeof mq.addEventListener === "function") mq.addEventListener("change", onChange);
+      else if (typeof mq.addListener === "function") mq.addListener(onChange);
+    }
+  }
+
   function initBackToTop() {
     const btn = $("#toTop");
     if (!btn) return;
@@ -727,6 +777,7 @@
     initActiveNav();
     initReveal();
     initAccordions();
+    initTheme();
     initBackToTop();
     initContactForm();
   }

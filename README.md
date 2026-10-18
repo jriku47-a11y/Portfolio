@@ -59,6 +59,25 @@ Design decisions worth noting:
   overflow on tablets.
 - **A print stylesheet** strips the chrome so the page prints cleanly.
 
+### Dark mode
+
+The site ships with a dark theme that keeps the same identity — **warm charcoal, not navy**, with
+the orange accent carried through.
+
+- Every colour is a CSS custom property. There are **no hardcoded colours** outside the token
+  blocks, so both themes stay consistent when you edit the stylesheet.
+- `:root[data-theme="dark"]` overrides 42 of the 50 tokens. Light and dark define the **same**
+  variable names, so nothing can leak through unstyled.
+- A small inline script in `<head>` sets `data-theme` **before first paint**, so the page never
+  flashes the wrong colours on load.
+- On a first visit the theme follows the visitor's OS `prefers-color-scheme`. Once they press the
+  toggle, their explicit choice is stored in `localStorage` and wins from then on.
+- `color-scheme` is declared in both themes, so scrollbars and native form controls match.
+- Printing always uses the light theme.
+
+The toggle is the sun/moon button in the header. It updates its `aria-label` and `aria-pressed`
+to match, so screen readers announce the current state.
+
 ---
 
 ## Sections
@@ -302,6 +321,7 @@ This repository is public. The following rules are applied:
 - Tables use `<caption>`, `scope="col"`, and scroll inside their own container
 - Colour contrast designed against the dark theme
 - `prefers-reduced-motion` disables reveal animations, the typing effect, and smooth scrolling
+- Dark mode follows the OS preference by default, with a labelled toggle for manual control
 - Tested at 320, 375, 390, 414, 768, 1024, and 1366+ px with no horizontal overflow
 - Tap targets are at least 44 px
 
