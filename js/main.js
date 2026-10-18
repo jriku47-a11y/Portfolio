@@ -713,18 +713,24 @@
         }
       };
 
-      try {
-        if (typeof window.fetch !== "function") return disconnected();
-        window.fetch("api/contact.php", { method: "GET", cache: "no-store" })
-          .then((r) => {
-            // 405 = PHP endpoint is there and refused the GET, so it will work.
-            if (r.status === 405 || r.status === 501) return;
-            disconnected();
-          })
-          .catch(disconnected);
-      } catch (e) {
-        disconnected();
-      }
+      // Isolated in its own function so no early return here can skip the rest
+      // of initContactForm — including the submit listener below.
+      const probe = () => {
+        try {
+          if (typeof window.fetch !== "function") return disconnected();
+          window.fetch("api/contact.php", { method: "GET", cache: "no-store" })
+            .then((r) => {
+              // 405 = PHP endpoint is there and refused the GET, so it will work.
+              if (r.status === 405 || r.status === 501) return;
+              disconnected();
+            })
+            .catch(disconnected);
+        } catch (e) {
+          disconnected();
+        }
+      };
+
+      probe();
     }
 
     // NOTE: never read fields as `form.name` / `form.email`. HTMLFormElement has its
