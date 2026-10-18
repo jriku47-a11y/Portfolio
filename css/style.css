@@ -279,8 +279,25 @@ img{max-width:100%;display:block}
 .hero-meta a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--rule-strong);padding-bottom:1px}
 .hero-meta a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 
-/* ---- hero side panel (typographic only — no photograph) ---- */
-.portrait{margin:0 0 0 auto;display:flex;flex-direction:column;gap:1.1rem;max-width:396px}
+/* ---- hero side panel (avatar + typographic status) ---- */
+.portrait{margin:0 0 0 auto;display:flex;flex-direction:column;gap:1.1rem;max-width:396px;align-items:flex-start}
+.portrait-frame{
+  width:168px;height:168px;flex:none;border-radius:50%;padding:5px;
+  background:var(--surface);border:1px solid var(--rule);box-shadow:var(--shadow);
+}
+.portrait-photo{
+  position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;
+  background:linear-gradient(180deg,var(--portrait-a),var(--portrait-b));
+}
+.portrait-img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block}
+.portrait-initials{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-serif);font-size:2.4rem;line-height:1;color:var(--muted);
+}
+.portrait-photo.is-loaded .portrait-initials{display:none}
+.portrait-caption{display:flex;flex-direction:column;gap:.2rem}
+.portrait-caption strong{font-family:var(--font-serif);font-weight:500;font-size:1.06rem;color:var(--ink)}
+.portrait-caption span{font-family:var(--font-mono);font-size:.74rem;color:var(--muted)}
 .now-card{
   background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);
   padding:1.4rem 1.5rem;
@@ -718,14 +735,20 @@ footer{border-top:1px solid var(--rule);padding:2.2rem 0 2.6rem;color:var(--mute
    RESPONSIVE
    ============================================================ */
 @media (max-width:1020px){
-  .hero-grid{grid-template-columns:1fr;gap:2.8rem}
+  .hero-grid{grid-template-columns:1fr;gap:1.9rem}
   .grid-4{grid-template-columns:repeat(2,1fr)}
   .grid-3{grid-template-columns:1fr 1fr}
   .pf-grid{grid-template-columns:1fr}
   .pf-media{border-right:0;border-bottom:1px solid var(--rule);padding:1.7rem}
   .resume-grid,.contact-grid,.presence-grid,.grid-2{grid-template-columns:1fr}
   .nav-cta .btn-ghost{display:none}
-  .portrait{max-width:340px;margin-left:0}
+  /* One column: dissolve the side panel so its parts can sit around the copy —
+     photo and name above the pitch, "Currently" and the tags below it. */
+  .portrait{display:contents}
+  .portrait-frame{order:-2;width:132px;height:132px}
+  .portrait-caption{order:-1}
+  .now-card{order:1}
+  .portrait-tags{order:2}
 }
 @media (max-width:900px){
   .nav-links{display:none}
@@ -745,7 +768,6 @@ footer{border-top:1px solid var(--rule);padding:2.2rem 0 2.6rem;color:var(--mute
 @media (max-width:420px){
   .reflection p:first-child::first-letter{font-size:2.3rem;padding-right:.4rem}
   .hero-actions .btn{flex:1 1 100%}
-  .portrait{max-width:100%}
 }
 
 /* ---- print: always the light theme ---- */

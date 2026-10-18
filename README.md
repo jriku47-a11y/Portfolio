@@ -51,8 +51,8 @@ Design decisions worth noting:
 - **No gradients on text.** The name is solid accent orange, not a gradient fill.
 - **No glassmorphism, no blurred glow orbs, no grid backdrops.** A single faint warm tint keeps
   the page from reading as a flat sheet.
-- **The hero uses a portrait slot**, not a code window. It is an obvious place to drop a real
-  headshot.
+- **The hero uses a portrait slot**, not a code window. It holds a single circular avatar, a
+  name caption, and a typographic "Currently" panel. The avatar file lives in `assets/`.
 - **Motion is restrained**: one 14px fade-up on scroll reveal, disabled entirely under
   `prefers-reduced-motion`.
 - **The header collapses to the mobile menu below 900px**, which is what prevents horizontal
@@ -203,16 +203,22 @@ personal: {
   linkedin: "https://www.linkedin.com/in/jriku",
   portfolioRepo: "https://github.com/jriku47-a11y/Portfolio",
 
-  email: "",
+  photo: "assets/profile.jpg",
+  photoAlt: "Portrait of Jericho Andren",
+  email: "jriku47@gmail.com",
   phone: "",
-  showEmail: false,
+  showEmail: true,
   showPhone: false
 }
 ```
 
-`email` and `phone` ship **empty on purpose**. Fill them in only if you decide to publish them,
-then set the matching `show…` flag to `true`. Nothing else on the site hardcodes your contact
-details.
+`email` is **published on purpose** — a recruiter needs a way to reach you, and it appears in the
+hero, in the contact channels and as the reply address in the form success message. `phone` ships
+**empty**; fill it in only if you decide to publish it, then set `showPhone` to `true`. Nothing
+else on the site hardcodes your contact details.
+
+The hero avatar reads `personal.photo`. Point it at any image inside the repo, or set it to `""`
+to drop the picture and show the initials badge instead.
 
 ### Adding a project
 
@@ -358,9 +364,11 @@ Then enable it:
 3. Branch: **main** / root
 4. Wait for the build, then open `https://jriku47-a11y.github.io/Portfolio/`
 
-> **Important:** GitHub Pages runs static files only. It **cannot execute PHP**, so the contact
-> form will report that the mail service is not connected. This is expected and handled
-> gracefully — the form tells visitors to use LinkedIn instead.
+> **Important:** GitHub Pages runs static files only, so it **cannot execute PHP**. That is why
+> the form uses the Web3Forms relay by default — the contact form works on Pages as-is. If you
+> clear `contact.relay.accessKey`, the page detects that no relay is configured, checks whether
+> `api/contact.php` exists, and tells visitors honestly which route is live instead of faking a
+> success message.
 
 ### Contact form — a PHP host
 
@@ -374,12 +382,15 @@ Everything else is unchanged. Do not put mail credentials in client-side code.
 
 This repository is public. The following rules are applied:
 
-- **No photograph of the owner appears anywhere on this site.** Not a headshot, not an
-  avatar, not an initials placeholder. The hero uses a typographic panel instead. This is
-  deliberate — keep it that way if you edit the hero.
+- **Only one photograph is published: the hero avatar** (`assets/profile.jpg`, set by
+  `personal.photo` in `js/content.js`). There are no project screenshots, no gallery, and no
+  photographs of other people. Set `personal.photo` to `""` to remove the avatar entirely — the
+  hero then shows the initials badge instead.
 - **No residential address is published or committed.** Only "Pasay City, Philippines" appears.
-- **Email and phone ship empty.** They are configurable in `js/content.js` and hidden behind
-  `showEmail` / `showPhone` flags, which default to `false`.
+- **Email is published** (`jriku47@gmail.com`, set in `js/content.js` behind `showEmail`). It is a
+  public inbox address, nothing more.
+- **Phone ships empty.** It is configurable in `js/content.js` and hidden behind `showPhone`,
+  which defaults to `false`.
   Note: the downloadable **resume PDF does contain the phone number and email address**,
   because a resume without contact details is not usable by a recruiter. Remove them from
   the PDF if that is not what you want.
@@ -409,7 +420,9 @@ This repository is public. The following rules are applied:
 - [ ] Removed the two yellow **editor notes** once your own content is in place
 - [ ] Added your resume PDF and set `resume.available` to `true`
 - [ ] Opened every GitHub / LinkedIn / project link and confirmed it works
-- [ ] Filled in `email` and `showEmail` if you want the address published
+- [x] Filled in `email` and set `showEmail` to `true`
+- [ ] Added the avatar image at `assets/profile.jpg`
+- [ ] Confirmed a real test message arrives in the Web3Forms inbox (spam folder included)
 - [ ] Confirmed no residential address appears anywhere
 - [ ] Checked the page at 375 px with no horizontal scroll
 - [ ] Tabbed through the page with only the keyboard

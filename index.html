@@ -129,8 +129,18 @@
         </div>
 
         <figure class="portrait">
-          <!-- No photograph is used anywhere on this site by choice.
-               This panel is typographic only — no image, no avatar, no initials. -->
+          <div class="portrait-frame">
+            <!-- Profile avatar. `personal.photo` in js/content.js supplies the file.
+                 If the image is missing or fails to load, the initials stay visible,
+                 so the panel is never empty or broken. -->
+            <div class="portrait-photo" id="heroAvatar">
+              <span class="portrait-initials" aria-hidden="true">JA</span>
+            </div>
+          </div>
+          <figcaption class="portrait-caption">
+            <strong>Jericho Andren</strong>
+            <span>BSIT Student &middot; Pasay City, Philippines</span>
+          </figcaption>
           <div class="now-card">
             <span class="now-label">Currently</span>
             <p class="now-line">Studying BSIT at Datamex College of Saint Adeline</p>

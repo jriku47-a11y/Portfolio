@@ -7,9 +7,9 @@
 
    PRIVACY RULES (please keep these)
    - Do NOT put a residential address anywhere in this file.
-   - `email` and `phone` ship EMPTY on purpose. Add them only
-     if you consciously decide to publish them, then set
-     `showPhone` / `showEmail` to true.
+   - `email` is published on purpose. `phone` ships EMPTY — add it only
+     if you consciously decide to publish it, then set
+     `showPhone` to true. `showEmail` controls the hero link.
    - Never put passwords, API keys or app passwords in this
      file or any other file in this repository. Mail secrets
      belong in api/config.local.php (gitignored) or in
@@ -32,14 +32,18 @@ const PORTFOLIO = {
     linkedin: "https://www.linkedin.com/in/jriku",
     portfolioRepo: "https://github.com/jriku47-a11y/Portfolio",
 
-    // Configurable contact fields. Empty = nothing is shown publicly.
-    email: "",
+    // Contact fields. `email` is published on purpose (recruiters need a way to
+    // reach you). `phone` stays EMPTY unless you consciously decide to publish it.
+    email: "jriku47@gmail.com",
     phone: "",
-    showEmail: false,
+    showEmail: true,
     showPhone: false,
 
-    // NOTE: this site uses no photograph of the owner anywhere — no headshot,
-    // no avatar, no initials placeholder. Keep it that way.
+    // Profile avatar shown in the hero. Set `photo` to "" to hide the
+    // picture and show the initials badge instead. Keep it a file inside
+    // this repo (for example assets/profile.jpg) — no external hotlinks.
+    photo: "assets/profile.jpg",
+    photoAlt: "Portrait of Jericho Andren",
 
 // Resume. `available: false` renders an honest "add your PDF"
 // panel instead of a broken download link.
@@ -351,7 +355,7 @@ const PORTFOLIO = {
         "Wrote semantic markup for every section",
         "Added responsive CSS, then checked narrow viewports before desktop",
         "Implemented navigation, scroll reveal, accordions and form validation",
-        "Wired the contact form to a PHP backend that keeps mail secrets on the server",
+        "Wired the contact form to a mail endpoint that keeps secrets off the page, with a static-host relay so it still works on GitHub Pages",
         "Tested links, keyboard access, both colour themes and mobile behaviour"
       ],
       challenges: [
@@ -385,7 +389,7 @@ const PORTFOLIO = {
       repo: "https://github.com/jriku47-a11y/Portfolio",
       demo: "https://jriku47-a11y.github.io/Portfolio/",
       docs: "https://github.com/jriku47-a11y/Portfolio#readme",
-      demoNote: "Runs entirely on GitHub Pages, including the live SQLite explorer. The contact form needs a PHP host, so on Pages it reports that the mail service is not connected and points visitors to LinkedIn instead.",
+      demoNote: "Runs entirely on GitHub Pages, including the live SQLite explorer. The contact form delivers through Web3Forms there, and falls back to the PHP endpoint in api/contact.php when the site is hosted somewhere that runs PHP.",
       screenshot: "",
       lessons:
         "Building the design system first is what kept the page consistent. Writing the backend before the success message is what kept me honest — the form can only say it succeeded when the mail service actually accepted the message."
@@ -606,7 +610,7 @@ const PORTFOLIO = {
       enabled: true,
       provider: "web3forms",
       endpoint: "https://api.web3forms.com/submit",
-      accessKey: ""   // <- paste your Web3Forms access key here
+      accessKey: "ed071f54-1119-419d-8e8e-7960f9d611e4"   // <- your Web3Forms access key
     }
   }
 };

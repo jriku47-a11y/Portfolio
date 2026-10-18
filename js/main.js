@@ -68,8 +68,26 @@
       a.hidden = false;
     }
 
-    // Deliberately no profile photograph anywhere on this site, so there is no
-    // image element to populate.
+    // Profile avatar. Falls back to the initials badge whenever the image is
+    // missing or fails to decode, so there is never a broken icon.
+    const avatar = $("#heroAvatar");
+    if (avatar && P.photo) {
+      const img = new Image();
+      img.className = "portrait-img";
+      img.alt = P.photoAlt || "Portrait of " + (P.name || "the site owner");
+      img.width = 320;
+      img.height = 320;
+      img.decoding = "async";
+      img.addEventListener("load", () => avatar.classList.add("is-loaded"));
+      img.addEventListener("error", () => img.remove());
+      img.src = P.photo;
+      avatar.prepend(img);
+    }
+
+    if (P.initials) {
+      const badge = avatar && avatar.querySelector(".portrait-initials");
+      if (badge) badge.textContent = P.initials;
+    }
   }
 
   /* ============================================================
