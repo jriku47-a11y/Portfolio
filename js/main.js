@@ -682,14 +682,49 @@
 
     applyRelayToForm(form, relay);
 
-    // Tell the visitor plainly which route is live.
+    /* Tell the visitor plainly which route is live. When no relay key is set we
+       check once whether the PHP endpoint actually exists, so a visitor is not
+       invited to write a message that cannot be sent. */
+    const notice = $("#formNotice");
     const note = $("#formNote");
-    if (note && relay.ready) {
-      note.textContent =
-        "Delivered straight to my inbox by Web3Forms. A success message appears only after the service confirms it accepted your message.";
-    } else if (note) {
-      note.textContent =
-        "The contact form is not connected to a mail service on this host yet. Please reach me through LinkedIn instead.";
+
+    const showNotice = (msg) => {
+      if (!notice) return;
+      notice.hidden = false;
+      if (msg) notice.innerHTML = msg;
+      const link = $("#noticeLinkedin");
+      if (link && P.linkedin) link.href = P.linkedin;
+    };
+
+    if (relay.ready) {
+      if (note) {
+        note.textContent =
+          "Delivered straight to my inbox by Web3Forms. A success message appears only after the service confirms it accepted your message.";
+      }
+    } else {
+      // No relay key. Probe the PHP endpoint: it answers 405 to a GET when PHP is
+      // running, and 404 on a static host. Guarded because fetch itself may be
+      // unavailable, in which case we assume it will not work.
+      const disconnected = () => {
+        showNotice();
+        if (note) {
+          note.textContent =
+            "The contact form is not connected to a mail service on this host yet. Please reach me through LinkedIn instead.";
+        }
+      };
+
+      try {
+        if (typeof window.fetch !== "function") return disconnected();
+        window.fetch("api/contact.php", { method: "GET", cache: "no-store" })
+          .then((r) => {
+            // 405 = PHP endpoint is there and refused the GET, so it will work.
+            if (r.status === 405 || r.status === 501) return;
+            disconnected();
+          })
+          .catch(disconnected);
+      } catch (e) {
+        disconnected();
+      }
     }
 
     // NOTE: never read fields as `form.name` / `form.email`. HTMLFormElement has its

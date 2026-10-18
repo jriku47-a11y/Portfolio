@@ -601,6 +601,13 @@ tbody tr:hover{background:var(--row-hover)}
 .ch-value a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 
 .field{margin-bottom:1.1rem}
+.form-notice{
+  background:var(--amber-note-bg);border:1px solid var(--amber-note-rule);
+  border-left:3px solid var(--note-accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:.9rem 1.1rem;margin:0 0 1.3rem;font-size:.9rem;line-height:1.6;color:var(--ink-2);
+}
+.form-notice strong{display:block;color:var(--ink);margin-bottom:.2rem}
+.form-notice a{color:var(--accent);font-weight:600}
 label{display:block;font-size:.83rem;font-weight:600;margin-bottom:.4rem;color:var(--ink)}
 input,textarea,select{
   width:100%;background:var(--input-bg);border:1px solid var(--rule-strong);color:var(--ink);
