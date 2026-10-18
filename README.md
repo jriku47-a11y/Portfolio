@@ -279,41 +279,63 @@ honest "no resume uploaded yet" panel rather than a broken download link.
 
 ## Contact form setup
 
-The form posts to `api/contact.php`, which validates server-side, filters bots with a honeypot,
-rate-limits to 5 submissions per hour per IP, and sends via **Resend (recommended)** or
-**Gmail SMTP**.
+The contact form has **two routes** and picks the right one automatically.
 
-### Step 1 — create a config file
+### Route 1 — Web3Forms (recommended, works on GitHub Pages)
 
-Copy `api/config.example.php` to **`api/config.local.php`** and fill it in.
+GitHub Pages only serves static files, so it **cannot run PHP**. A form-relay service
+sends the message straight from the visitor's browser to your inbox instead.
+
+1. Sign up free at **<https://app.web3forms.com/onboarding/create>** (250 submissions/month, no card).
+2. Verify your email and copy the **access key**.
+3. Paste it into `js/content.js`:
+   ```js
+   contact: {
+     relay: {
+       enabled: true,
+       provider: "web3forms",
+       endpoint: "https://api.web3forms.com/submit",
+       accessKey: "PASTE_YOUR_KEY_HERE"
+     }
+   }
+   ```
+4. Push. That is all — **no PHP host needed**.
+
+The access key is designed to be public: it is meant to sit in the page source of a
+client-side form. It can only submit a message to your inbox; it cannot read or change
+anything in your Web3Forms account.
+
+Leave `accessKey` empty and the form falls back to Route 2 automatically.
+
+### Route 2 — own PHP endpoint
+
+Requires a host that runs PHP (shared hosting, cPanel, Railway, Render, a VPS). Copy
+`api/config.example.php` to `api/config.local.php` and fill it in.
 
 `api/config.local.php` is gitignored. Never commit it.
 
-### Step 2 — choose a transport
+**Option A — Resend (recommended, port 443).** Sign up at <https://resend.com>, copy the API
+key, verify your sending domain, then set `RESEND_API_KEY` and `MAIL_FROM`.
 
-**Option A — Resend (recommended, uses port 443 so antivirus and office firewalls rarely block it)**
+**Option B — Gmail SMTP.** Needs 2-Step Verification and an App password: Google Account →
+Security → 2-Step Verification → App passwords. Then set `GMAIL_USER` and `GMAIL_APP_PASSWORD`.
 
-1. Create a free account at <https://resend.com>.
-2. Copy the API key.
-3. Verify your sending domain.
-4. Put `RESEND_API_KEY` and `MAIL_FROM` in `api/config.local.php`.
+**`MAIL_TO` is required** in both cases — it is the inbox that receives inquiries. Without it
+the endpoint returns **HTTP 501** and the page tells visitors the form is not connected rather
+than faking a success message.
 
-**Option B — Gmail SMTP (needs 2-Step Verification and an App password)**
-
-1. Google Account → Security → 2-Step Verification → App passwords.
-2. Generate a 16-character app password.
-3. Put `GMAIL_USER` and `GMAIL_APP_PASSWORD` in `api/config.local.php`.
-
-### Step 3 — set the destination
-
-`MAIL_TO` is the inbox that receives inquiries. Without it the endpoint returns **HTTP 501** and
-the page tells visitors the form is not connected.
+> You do **not** need a Gmail address to receive messages. `MAIL_TO` accepts any inbox —
+> Outlook, Yahoo, ProtonMail or your school email. Gmail is only one possible transport.
 
 ### Behaviour on failure
 
-The success message appears **only** when the mail service confirms it accepted the message. If
-sending fails, the visitor is told the message was not sent and is offered an alternative. No
-fake success states.
+A success message appears **only** when the service confirms it accepted the message. If
+sending fails, the visitor is told the message was not sent and offered LinkedIn instead.
+No fake success states. The existing honeypot still runs and maps to the relay's
+`botcheck` field, so bots are dropped silently.
+
+Because the site is static, the PHP endpoint is deployed separately from GitHub Pages —
+having both configured is fine, the relay simply wins while a key is present.
 
 ---
 

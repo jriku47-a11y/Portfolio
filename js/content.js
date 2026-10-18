@@ -587,7 +587,27 @@ const PORTFOLIO = {
     intro:
       "Best for internships, junior roles, and technical questions. If you have a role in mind, send the stack and the location and I will reply with relevant project links.",
     formNote:
-      "Your message is validated on the server and delivered by email. A success message appears only once the mail service confirms it accepted the message."
+      "Your message is validated on the server and delivered by email. A success message appears only once the mail service confirms it accepted the message.",
+
+    /* ---------------------------------------------------------------
+       FORM RELAY — lets the contact form work on a STATIC host such as
+       GitHub Pages, where PHP cannot run.
+
+       1. Sign up free at  https://app.web3forms.com/onboarding/create
+       2. Verify your email and copy the access key
+       3. Paste it into accessKey below and commit
+
+       The access key is designed to be public — it is meant to sit in the
+       page source of a client-side form. It cannot read or delete anything
+       in your account; it can only submit a message to your inbox.
+       Leave it empty to fall back to the PHP endpoint in api/contact.php.
+       --------------------------------------------------------------- */
+    relay: {
+      enabled: true,
+      provider: "web3forms",
+      endpoint: "https://api.web3forms.com/submit",
+      accessKey: ""   // <- paste your Web3Forms access key here
+    }
   }
 };
 

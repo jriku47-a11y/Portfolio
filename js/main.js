@@ -644,6 +644,33 @@
   }
 
   /* ---------- contact form ---------- */
+  /* ---------- contact form ---------- */
+
+  /* Resolve the relay once. The relay is preferred because it also works on a
+     static host such as GitHub Pages; the PHP endpoint stays as a fallback for
+     when the site is hosted somewhere that runs PHP. */
+  function getRelay() {
+    const r = (CFG.contact && CFG.contact.relay) || {};
+    const ready = !!(r.enabled && r.accessKey && String(r.accessKey).trim() && r.endpoint);
+    return { ready: ready, cfg: r };
+  }
+
+  function applyRelayToForm(form, relay) {
+    if (!relay.ready) return;
+    // Point the native form at the relay too, so it still submits without
+    // JavaScript, and mirror the key into a hidden input.
+    form.action = relay.cfg.endpoint;
+    form.method = "post";
+    let key = form.elements.namedItem("access_key");
+    if (!key) {
+      key = document.createElement("input");
+      key.type = "hidden";
+      key.name = "access_key";
+      form.appendChild(key);
+    }
+    key.value = relay.cfg.accessKey;
+  }
+
   function initContactForm() {
     const form = $("#contactForm");
     if (!form) return;
@@ -651,6 +678,19 @@
     const status = $("#formStatus");
     const sendBtn = $("#sendBtn");
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const relay = getRelay();
+
+    applyRelayToForm(form, relay);
+
+    // Tell the visitor plainly which route is live.
+    const note = $("#formNote");
+    if (note && relay.ready) {
+      note.textContent =
+        "Delivered straight to my inbox by Web3Forms. A success message appears only after the service confirms it accepted your message.";
+    } else if (note) {
+      note.textContent =
+        "The contact form is not connected to a mail service on this host yet. Please reach me through LinkedIn instead.";
+    }
 
     // NOTE: never read fields as `form.name` / `form.email`. HTMLFormElement has its
     // own `name`, `action`, `method` and `target` IDL attributes, and those win over
@@ -667,6 +707,9 @@
       status.className = "form-status err";
       status.textContent = msg;
     };
+
+    const viaLinkedin = () =>
+      "Please reach me through " + (P.linkedin ? "my LinkedIn profile" : contactFallback()) + " instead.";
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -696,9 +739,52 @@
       status.className = "form-status sending";
       status.textContent = "Sending your message…";
 
+      const succeed = (msg) => {
+        status.className = "form-status ok";
+        status.textContent = msg;
+        form.reset();
+      };
+
       try {
-        // Server-side delivery. A success message is shown ONLY when the
-        // mail service confirms the message was accepted.
+        // ---- Route 1: form relay. Works on a static host such as GitHub Pages. ----
+        if (relay.ready) {
+          const res = await fetch(relay.cfg.endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify({
+              access_key: relay.cfg.accessKey,
+              name: name,
+              email: email,
+              subject: subject,
+              message: message,
+              // The relay drops the submission silently when this is truthy, so a
+              // filled honeypot blocks the bot without telling it that it failed.
+              botcheck: !!honey
+            })
+          });
+
+          let json = {};
+          try { json = await res.json(); } catch (_) { /* non-JSON reply */ }
+
+          if (res.ok && json && json.success) {
+            succeed(
+              "Message sent — it was accepted for delivery. I will reply from " +
+                (P.email || "my listed email") + "."
+            );
+            return;
+          }
+          // A rejected submission must never be shown as a success.
+          fail(
+            (json && json.message)
+              ? "Your message was not sent. " + String(json.message)
+              : "Your message was not sent. " + viaLinkedin()
+          );
+          return;
+        }
+
+        // ---- Route 2: own PHP endpoint. Needs a host that runs PHP. ----
+        // A success message is shown ONLY when the mail service confirms the
+        // message was accepted.
         const res = await fetch("api/contact.php", {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -709,26 +795,17 @@
         try { json = await res.json(); } catch (_) { /* non-JSON response */ }
 
         if (res.ok && json && json.ok) {
-          status.className = "form-status ok";
-          status.textContent =
-            "Message accepted for delivery. I will reply from " + (P.email || "my listed email") + ".";
-          form.reset();
+          succeed("Message accepted for delivery. I will reply from " + (P.email || "my listed email") + ".");
           return;
         }
         if (res.status === 422) { fail((json && json.error) || "Please check the highlighted fields."); return; }
         if (res.status === 429) { fail("Too many messages from this device. Please try again later."); return; }
         if (res.status === 501) { fail(notConfiguredMsg()); return; }
 
-        // Any other failure: say so plainly. Never claim success.
-        fail(
-          (json && json.error) ||
-            "Your message was not sent. Please try again, or reach me through " +
-              (P.linkedin ? "LinkedIn" : contactFallback()) +
-              "."
-        );
+        fail((json && json.error) || ("Your message was not sent. " + viaLinkedin()));
       } catch (err) {
         fail(
-          "The message was not sent — the mail service could not be reached. Please try again, or reach me through " +
+          "The message was not sent — the service could not be reached. Please try again, or reach me through " +
             (P.linkedin ? "LinkedIn" : contactFallback()) +
             "."
         );
