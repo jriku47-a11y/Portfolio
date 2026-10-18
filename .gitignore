@@ -27,7 +27,9 @@ drafts/
 # DEPENDENCIES & BUILD ARTIFACTS
 # ============================================================
 node_modules/
-vendor/
+# Composer dependencies at the repository root only. assets/vendor/ holds the
+# SQLite WebAssembly runtime used by the live database explorer and must ship.
+/vendor/
 .sass-cache/
 .cache/
 
