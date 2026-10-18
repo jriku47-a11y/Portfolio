@@ -68,18 +68,8 @@
       a.hidden = false;
     }
 
-    // Profile photo: use a real image when supplied, otherwise the initials avatar.
-    const avatar = $("#heroAvatar");
-    if (avatar && P.photo) {
-      avatar.innerHTML = "";
-      const img = new Image();
-      img.src = P.photo;
-      img.alt = "Professional headshot of " + P.name;
-      img.loading = "lazy";
-      avatar.appendChild(img);
-    } else if (avatar && P.initials) {
-      avatar.textContent = P.initials;
-    }
+    // Deliberately no profile photograph anywhere on this site, so there is no
+    // image element to populate.
   }
 
   /* ============================================================
@@ -179,9 +169,10 @@
       /* ---- body ---- */
       const body = el("div", "pf-body");
       const links = [];
+      if (p.file) links.push(`<a class="btn btn-accent btn-sm" href="${p.file}" download>${p.fileLabel || "Download data"} &#8595;</a>`);
       if (p.demo) links.push(`<a class="btn btn-primary btn-sm" href="${p.demo}" target="_blank" rel="noopener noreferrer">Live Demo &#8599;</a>`);
       if (p.repo) links.push(`<a class="btn btn-ghost btn-sm" href="${p.repo}" target="_blank" rel="noopener noreferrer">Repository &#8599;</a>`);
-      if (p.docs) links.push(`<a class="btn btn-ghost btn-sm" href="${p.docs}" target="_blank" rel="noopener noreferrer">Documentation &#8599;</a>`);
+      if (p.docs) links.push(`<a class="btn btn-ghost btn-sm" href="${p.docs}" target="_blank" rel="noopener noreferrer">${p.docsLabel || "Documentation"} &#8599;</a>`);
 
       const dl = (rows) =>
         `<dl>${rows

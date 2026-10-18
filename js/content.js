@@ -38,14 +38,13 @@ const PORTFOLIO = {
     showEmail: false,
     showPhone: false,
 
-    // Profile photo. Leave empty to use the initials avatar.
-    // To use a real photo, drop a file at this path.
-    photo: "",
+    // NOTE: this site uses no photograph of the owner anywhere — no headshot,
+    // no avatar, no initials placeholder. Keep it that way.
 
-    // Resume. `available: false` renders an honest "add your PDF"
-    // panel instead of a broken download link.
+// Resume. `available: false` renders an honest "add your PDF"
+// panel instead of a broken download link.
     resume: {
-      available: false,
+      available: true,
       file: "assets/resume.pdf",
       label: "Jericho-Andren-Resume.pdf"
     }
@@ -307,7 +306,7 @@ const PORTFOLIO = {
         "Query 3 — maintenance risk and ageing asset base",
         "Runs as-is in the SQLite CLI or DB Browser for SQLite"
       ],
-      technologies: ["SQLite", "SQL", "DB Browser for SQLite"],
+      technologies: ["SQLite", "SQL", "DB Browser for SQLite", "Excel"],
       /* Every figure below was produced by running the SQL file linked
          above. Regenerate and edit here if the dataset changes. */
       results: [
@@ -320,9 +319,14 @@ const PORTFOLIO = {
         { label: "Repair AND no warranty", value: "3 records · PHP 675,000" },
         { label: "Highest-value type", value: "Router · PHP 2,402,000" }
       ],
+      /* Openable in Excel or Google Sheets — six sheets, numbers stored as
+         numbers rather than text, so columns can be sorted and totalled. */
+      file: "projects/it-equipment-inventory/IT_Equipment_Inventory_Analytics.xlsx",
+      fileLabel: "Excel workbook",
       repo: "https://github.com/jriku47-a11y/Portfolio/blob/main/projects/it-equipment-inventory/inventory_analytics.sql",
       demo: "",
       docs: "https://github.com/jriku47-a11y/Portfolio/blob/main/projects/it-equipment-inventory/inventory_analytics.sql",
+      docsLabel: "SQL source",
       screenshot: "",
       lessons:
         "The schema earns its keep only when it refuses bad data: the CHECK constraints stop a negative cost or an invalid warranty value from ever entering the table. The other lesson was about reading the result — the numbers were already in the data, but ranking by value instead of row count is what made them useful."

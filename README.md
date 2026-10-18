@@ -123,13 +123,28 @@ inspected without leaving the page.
 
 ```
 projects/it-equipment-inventory/inventory_analytics.sql
+projects/it-equipment-inventory/IT_Equipment_Inventory_Analytics.xlsx
 assets/vendor/sql-wasm.js, sql-wasm.wasm   SQLite compiled to WebAssembly
+assets/resume.pdf                         one-page resume
 ```
 
-Self-contained SQLite file: schema, constraints, 50 cleaned records and three
-queries. Open it in the SQLite CLI or DB Browser for SQLite and it runs as-is.
-Every figure quoted in that project's case study was produced by executing this
-file, so the claims on the site are reproducible rather than asserted.
+The **Excel workbook** is the primary way to look at this project. It has six
+sheets and stores values as real numbers, not text, so columns sort and total
+correctly:
+
+| Sheet | Contents |
+|---|---|
+| `inventory_assets` | the 50 records exactly as stored |
+| `with_acquisition_value` | the same records plus the computed `quantity * unit_cost`, biggest first |
+| `Query1_KPIs` | headline totals across the estate |
+| `Query2_by_type` | equipment types ranked by acquisition value |
+| `Query3_risk` | records that are both broken and out of warranty |
+| `Query3_ageing` | the 6-years-or-older asset base |
+
+The `.sql` file remains the source of truth: schema, constraints, records and
+queries, runnable in the SQLite CLI or DB Browser for SQLite. Every figure quoted
+in that project's case study was produced by executing it, so the claims on the
+site are reproducible rather than asserted.
 
 ### Live database explorer
 
@@ -337,9 +352,15 @@ Everything else is unchanged. Do not put mail credentials in client-side code.
 
 This repository is public. The following rules are applied:
 
+- **No photograph of the owner appears anywhere on this site.** Not a headshot, not an
+  avatar, not an initials placeholder. The hero uses a typographic panel instead. This is
+  deliberate — keep it that way if you edit the hero.
 - **No residential address is published or committed.** Only "Pasay City, Philippines" appears.
 - **Email and phone ship empty.** They are configurable in `js/content.js` and hidden behind
   `showEmail` / `showPhone` flags, which default to `false`.
+  Note: the downloadable **resume PDF does contain the phone number and email address**,
+  because a resume without contact details is not usable by a recruiter. Remove them from
+  the PDF if that is not what you want.
 - **No credentials are committed.** Mail secrets belong in `api/config.local.php` (gitignored) or
   in server environment variables.
 - `.gitignore` blocks `api/config.local.php`, `*.local.php`, `.env*`, and key/certificate files.
