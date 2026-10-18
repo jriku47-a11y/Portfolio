@@ -569,6 +569,9 @@ tbody tr:hover{background:var(--row-hover)}
   color:var(--accent);font-weight:500;
 }
 .hint{font-size:.83rem;color:var(--muted-2);margin:.35rem 0 0;line-height:1.6}
+.note-line{
+  border-left:2px solid var(--rule-strong);padding-left:.8rem;margin-top:.9rem;
+}
 
 /* ============================================================
    EDITOR NOTES + RESERVED SLOTS

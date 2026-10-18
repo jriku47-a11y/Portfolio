@@ -235,7 +235,8 @@
             </details>`
           : ""}
         ${links.length ? `<div class="btn-row">${links.join("")}</div>` : ""}
-        ${!links.length ? `<p class="hint">Links for this project have not been added yet.</p>` : ""}
+        ${p.demoNote ? `<p class="hint note-line">${p.demoNote}</p>` : ""}
+        ${!links.length && !p.demoNote ? `<p class="hint">Links for this project have not been added yet.</p>` : ""}
       `;
 
       article.appendChild(media);

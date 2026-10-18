@@ -255,9 +255,11 @@ const PORTFOLIO = {
         "Reporting views: daily sales summary, low stock, pending sales, staff performance"
       ],
       technologies: ["PHP", "MySQL (MariaDB)", "MySQLi", "PDO", "HTML5", "CSS3", "JavaScript", "PHPMailer", "Apache / XAMPP"],
-      repo: "",
+      repo: "https://github.com/jriku47-a11y/Salon",
       demo: "",
-      docs: "",
+      docs: "https://github.com/jriku47-a11y/Salon#readme",
+      demoNote:
+        "Requires a PHP host and MySQL, so it is not hosted on GitHub Pages. The repository contains the full source, the sanitized schema, and setup instructions.",
       screenshot: "",
       lessons:
         "Access control is easier to get right when the page and the link are both gated — hiding a menu item is not security. Passwords are hashed with bcrypt and every query is a prepared statement, but this build has no CSRF tokens and the database password was left in a config file. Both belong at the top of my list to fix next."
@@ -326,16 +328,75 @@ const PORTFOLIO = {
         "The schema earns its keep only when it refuses bad data: the CHECK constraints stop a negative cost or an invalid warranty value from ever entering the table. The other lesson was about reading the result — the numbers were already in the data, but ranking by value instead of row count is what made them useful."
     },
 
+    {
+      number: 3,
+      published: true,
+      title: "Personal Portfolio Website",
+      category: "Web Application",
+      type: "Personal Project",
+      role: "[ Replace this: say which parts you actually built or owned. ]",
+      overview:
+        "A single-page professional portfolio built to present my background, skills and work to instructors, internship coordinators and recruiters. It is the site you are reading now.",
+      problem:
+        "As a student I had no single place to present my background and projects in a form a recruiter could actually read in under a minute.",
+      solution:
+        "A fast, accessible single-page site with clear section navigation, case-study format for projects, a working contact form backed by a real PHP mail endpoint, and a layout that holds up from 320 px phones to wide desktop monitors.",
+      process: [
+        "Outlined the sections a reviewer needs, in the order they need them",
+        "Built the design system first — colour, spacing and type tokens",
+        "Wrote semantic markup for every section",
+        "Added responsive CSS, then checked narrow viewports before desktop",
+        "Implemented navigation, scroll reveal, accordions and form validation",
+        "Wired the contact form to a PHP backend that keeps mail secrets on the server",
+        "Tested links, keyboard access, both colour themes and mobile behaviour"
+      ],
+      challenges: [
+        {
+          challenge: "A contact form that only pretends to send mail.",
+          solution:
+            "The form posts to a PHP endpoint with server-side validation, a honeypot and rate limiting. A success message appears only when the mail service confirms acceptance — otherwise it tells the visitor the message was not sent."
+        },
+        {
+          challenge: "Keeping mail credentials out of public code.",
+          solution:
+            "Secrets load server-side from a gitignored config file or environment variables. Nothing sensitive is ever exposed in the browser."
+        },
+        {
+          challenge: "One content source instead of thirteen hand-edited sections.",
+          solution:
+            "Everything on the page renders from a single config object, and reserved project slots stay hidden until they hold real work — so the site can never advertise something that does not exist."
+        }
+      ],
+      features: [
+        "Sticky navigation with active-section highlighting",
+        "Mobile menu that closes on selection and on Escape",
+        "Scroll-reveal animations that respect reduced-motion preferences",
+        "Light and dark themes, following the OS setting until the visitor chooses",
+        "Accessible accordions and expandable case studies",
+        "Validated contact form with real server-side delivery",
+        "Skip-to-content link and visible keyboard focus states",
+        "Print stylesheet"
+      ],
+      technologies: ["HTML5", "CSS3", "Vanilla JavaScript", "PHP 8", "PHPMailer", "Git", "GitHub Pages"],
+      repo: "https://github.com/jriku47-a11y/Portfolio",
+      demo: "",
+      docs: "https://github.com/jriku47-a11y/Portfolio#readme",
+      demoNote: "Runs entirely on GitHub Pages. The contact form needs a PHP host, so on Pages it reports that the mail service is not connected and points visitors to LinkedIn instead.",
+      screenshot: "",
+      lessons:
+        "Building the design system first is what kept the page consistent. Writing the backend before the success message is what kept me honest — the form can only say it succeeded when the mail service actually accepted the message."
+    },
+
     /* ------------------------------------------------------------
-       Reserved slot for Project 3.
+       Reserved slot for a future project.
        Replace the placeholder values with a real project and set
        published: true. While published is false nothing is shown,
        so the page never advertises work that does not exist.
        ------------------------------------------------------------ */
     {
-      number: 3,
+      number: 4,
       published: false,
-      title: "Project 3 — to be added",
+      title: "Project 4 — to be added",
       category: "",
       type: "",
       role: "",
