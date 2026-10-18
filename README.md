@@ -1,0 +1,287 @@
+# Jericho Andren — Portfolio
+
+A professional single-page portfolio for a BSIT student and aspiring software developer, built to
+present work clearly to professors, internship coordinators, recruiters, and technical interviewers.
+
+**Live site:** `https://jriku47-a11y.github.io/Portfolio/`
+**Repository:** `https://github.com/jriku47-a11y/Portfolio`
+**Author:** Jericho Andren — [GitHub](https://github.com/jriku47-a11y) · [LinkedIn](https://www.linkedin.com/in/jriku)
+
+---
+
+## Technology stack
+
+Everything used is listed here because it is genuinely present in this repository.
+
+| Layer | Technology | Where it is used |
+|---|---|---|
+| Markup | HTML5 (semantic elements, ARIA) | `index.html` |
+| Styling | CSS3 (custom properties, grid, flexbox, container-free responsive breakpoints) | `css/style.css` |
+| Interactivity | Vanilla JavaScript (ES5-compatible, no framework, no build step) | `js/main.js` |
+| Content | Single JS config object | `js/content.js` |
+| Backend | PHP 8 | `api/contact.php` |
+| Email delivery | PHPMailer (bundled) — Resend HTTPS API or Gmail SMTP | `api/lib/`, `api/contact.php` |
+| Version control | Git / GitHub | repository |
+| Hosting | GitHub Pages (static site) | `.nojekyll` |
+
+There is **no build step, no bundler, and no npm dependency**. Clone it and it runs.
+
+---
+
+## Sections
+
+1. Home / Hero
+2. About Me
+3. Education
+4. Technical Skills
+5. Projects
+6. Problem-Solving Cases
+7. Cybersecurity Awareness
+8. AI Literacy
+9. Professional Presence (GitHub & LinkedIn)
+10. Resume
+11. Career Plan
+12. Final Reflection
+13. Contact
+
+---
+
+## Project structure
+
+```
+index.html            All 13 sections (semantic markup + accessibility)
+css/style.css         Design system: tokens, layout, components, responsive rules
+js/content.js         SINGLE SOURCE OF TRUTH — edit this to change content
+js/main.js            Renders content from config + all interactions
+api/contact.php       Contact endpoint (validation, honeypot, rate limiting, sending)
+api/config.example.php Safe config template (all values empty)
+api/config.local.php  YOUR mail credentials — gitignored, never committed
+api/lib/              Bundled PHPMailer (Exception, PHPMailer, SMTP)
+assets/               Your images and resume.pdf go here
+.nojekyll             Tells GitHub Pages to serve the files as-is
+```
+
+---
+
+## Running locally
+
+The site is static, so opening `index.html` directly works for most of the page.
+
+To serve it properly (recommended, so fonts and fetch behave normally):
+
+```bash
+# Python
+python -m http.server 8000
+
+# or PHP
+php -S localhost:8000
+
+# or Node
+npx serve .
+```
+
+Then open <http://localhost:8000>.
+
+To test the contact form you need PHP. Using XAMPP, copy this folder into `htdocs/`
+and browse to `http://localhost/portfolio set b/` — but see the contact section below first.
+
+---
+
+## How to edit the content
+
+**Almost everything lives in `js/content.js`.** You do not need to touch `index.html` to change
+names, links, projects, skills, career steps, or the AI log.
+
+### Personal details
+
+```js
+personal: {
+  name: "Jericho Andren",
+  role: "BSIT Student / Aspiring Software Developer",
+  location: "Pasay City, Philippines",
+  github: "https://github.com/jriku47-a11y",
+  linkedin: "https://www.linkedin.com/in/jriku",
+  portfolioRepo: "https://github.com/jriku47-a11y/Portfolio",
+
+  email: "",
+  phone: "",
+  showEmail: false,
+  showPhone: false
+}
+```
+
+`email` and `phone` ship **empty on purpose**. Fill them in only if you decide to publish them,
+then set the matching `show…` flag to `true`. Nothing else on the site hardcodes your contact
+details.
+
+### Adding a project
+
+Projects are reserved slots. A slot with `published: false` renders **nothing**, so the page can
+never advertise work that does not exist yet.
+
+```js
+{
+  number: 2,
+  published: true,          // flip to true once the details below are real
+  title: "Your Project Name",
+  category: "Web Application",
+  type: "Personal Project",
+  role: "What YOU actually did",
+  overview: "Two to four sentences.",
+  problem: "The problem it addresses.",
+  solution: "What you built.",
+  process: ["Step one", "Step two"],
+  challenges: [{ challenge: "What went wrong", solution: "How you fixed it" }],
+  features: ["Real feature", "Another real feature"],
+  technologies: ["HTML", "CSS"],   // only what is genuinely used
+  repo: "https://github.com/you/repo",
+  demo: "https://your-demo.example",
+  docs: "",
+  screenshot: "assets/projects/yourproject.png",
+  lessons: "What you actually learned."
+}
+```
+
+Screenshots go in `assets/projects/`. If a screenshot is missing, the page shows a neutral
+wireframe placeholder instead of a broken image.
+
+### Adding a problem-solving case
+
+```js
+{
+  published: true,
+  title: "Short title of the bug",
+  symptoms: "What you observed — exact error text is better than a paraphrase.",
+  investigation: "What you did to narrow it down, in order.",
+  rootCause: "The real cause, not the first guess.",
+  solution: "The fix, and how you confirmed it.",
+  tools: "Browser DevTools, PHP error log, Git",
+  lesson: "What you would do differently next time."
+}
+```
+
+### Adding a resume
+
+1. Export a single-page PDF resume.
+2. Save it as `assets/resume.pdf`.
+3. In `js/content.js`, set `personal.resume.available` to `true`.
+
+The download button and the inline preview appear automatically. Until then the page shows an
+honest "no resume uploaded yet" panel rather than a broken download link.
+
+---
+
+## Contact form setup
+
+The form posts to `api/contact.php`, which validates server-side, filters bots with a honeypot,
+rate-limits to 5 submissions per hour per IP, and sends via **Resend (recommended)** or
+**Gmail SMTP**.
+
+### Step 1 — create a config file
+
+Copy `api/config.example.php` to **`api/config.local.php`** and fill it in.
+
+`api/config.local.php` is gitignored. Never commit it.
+
+### Step 2 — choose a transport
+
+**Option A — Resend (recommended, uses port 443 so antivirus and office firewalls rarely block it)**
+
+1. Create a free account at <https://resend.com>.
+2. Copy the API key.
+3. Verify your sending domain.
+4. Put `RESEND_API_KEY` and `MAIL_FROM` in `api/config.local.php`.
+
+**Option B — Gmail SMTP (needs 2-Step Verification and an App password)**
+
+1. Google Account → Security → 2-Step Verification → App passwords.
+2. Generate a 16-character app password.
+3. Put `GMAIL_USER` and `GMAIL_APP_PASSWORD` in `api/config.local.php`.
+
+### Step 3 — set the destination
+
+`MAIL_TO` is the inbox that receives inquiries. Without it the endpoint returns **HTTP 501** and
+the page tells visitors the form is not connected.
+
+### Behaviour on failure
+
+The success message appears **only** when the mail service confirms it accepted the message. If
+sending fails, the visitor is told the message was not sent and is offered an alternative. No
+fake success states.
+
+---
+
+## Deployment
+
+### Static site — GitHub Pages (recommended)
+
+This portfolio is static and is already prepared for GitHub Pages (`.nojekyll` is included, so
+files beginning with `_` are served untouched).
+
+```bash
+git remote add origin https://github.com/jriku47-a11y/Portfolio.git
+git push -u origin main
+```
+
+Then enable it:
+
+1. Repository → **Settings** → **Pages**
+2. Source: **Deploy from a branch**
+3. Branch: **main** / root
+4. Wait for the build, then open `https://jriku47-a11y.github.io/Portfolio/`
+
+> **Important:** GitHub Pages runs static files only. It **cannot execute PHP**, so the contact
+> form will report that the mail service is not connected. This is expected and handled
+> gracefully — the form tells visitors to use LinkedIn instead.
+
+### Contact form — a PHP host
+
+To have a working contact form, deploy to any host that runs PHP (shared hosting, cPanel,
+Railway, Render, or a small VPS) with the repository's `api/` folder inside the web root.
+Everything else is unchanged. Do not put mail credentials in client-side code.
+
+---
+
+## Privacy
+
+This repository is public. The following rules are applied:
+
+- **No residential address is published or committed.** Only "Pasay City, Philippines" appears.
+- **Email and phone ship empty.** They are configurable in `js/content.js` and hidden behind
+  `showEmail` / `showPhone` flags, which default to `false`.
+- **No credentials are committed.** Mail secrets belong in `api/config.local.php` (gitignored) or
+  in server environment variables.
+- `.gitignore` blocks `api/config.local.php`, `*.local.php`, `.env*`, and key/certificate files.
+
+---
+
+## Accessibility and responsiveness
+
+- Semantic HTML with one `<h1>` and ordered headings per section
+- Skip-to-content link, visible `:focus-visible` rings, full keyboard operation
+- ARIA labels, `aria-expanded` on the mobile menu and accordions, `role="status"` live region on the form
+- Tables use `<caption>`, `scope="col"`, and scroll inside their own container
+- Colour contrast designed against the dark theme
+- `prefers-reduced-motion` disables reveal animations, the typing effect, and smooth scrolling
+- Tested at 320, 375, 390, 414, 768, 1024, and 1366+ px with no horizontal overflow
+- Tap targets are at least 44 px
+
+---
+
+## Before you present this
+
+- [ ] Replaced every `[placeholder]` in `js/content.js` with real content
+- [ ] Removed the two yellow **editor notes** once your own content is in place
+- [ ] Added your resume PDF and set `resume.available` to `true`
+- [ ] Opened every GitHub / LinkedIn / project link and confirmed it works
+- [ ] Filled in `email` and `showEmail` if you want the address published
+- [ ] Confirmed no residential address appears anywhere
+- [ ] Checked the page at 375 px with no horizontal scroll
+- [ ] Tabbed through the page with only the keyboard
+- [ ] Opened the browser console and confirmed there are no errors
+
+---
+
+## License
+
+Personal portfolio. All content belongs to the author.

@@ -1,0 +1,50 @@
+# ============================================================
+# SECRETS — never commit these
+# ============================================================
+api/config.local.php
+*.local.php
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+id_rsa*
+credentials.json
+secrets.json
+
+# ============================================================
+# PRIVATE / LOCAL-ONLY DATA
+# Personal notes, drafts, and local documents
+# ============================================================
+*.local.md
+notes/
+private/
+drafts/
+*.private.*
+
+# ============================================================
+# DEPENDENCIES & BUILD ARTIFACTS
+# ============================================================
+node_modules/
+vendor/
+.sass-cache/
+.cache/
+
+# ============================================================
+# OS / EDITOR NOISE
+# ============================================================
+Thumbs.db
+desktop.ini
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# ============================================================
+# LOGS & TEMPORARY FILES
+# ============================================================
+*.log
+logs/
+*.tmp

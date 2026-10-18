@@ -1,0 +1,482 @@
+/* ============================================================
+   PORTFOLIO CONTENT CONFIG
+   ------------------------------------------------------------
+   This is the single source of truth for the portfolio.
+   Edit the values below and the page updates — no other file
+   needs to change to add content.
+
+   PRIVACY RULES (please keep these)
+   - Do NOT put a residential address anywhere in this file.
+   - `email` and `phone` ship EMPTY on purpose. Add them only
+     if you consciously decide to publish them, then set
+     `showPhone` / `showEmail` to true.
+   - Never put passwords, API keys or app passwords in this
+     file or any other file in this repository. Mail secrets
+     belong in api/config.local.php (gitignored) or in
+     environment variables on the server.
+   ============================================================ */
+
+const PORTFOLIO = {
+  /* ---------------------------------------------------------
+     1. PERSONAL DETAILS
+     --------------------------------------------------------- */
+  personal: {
+    name: "Jericho Andren",
+    initials: "JA",
+    role: "BSIT Student / Aspiring Software Developer",
+    availability: "Open to internship / entry-level roles",
+    location: "Pasay City, Philippines",
+
+    // Public profile links — verified.
+    github: "https://github.com/jriku47-a11y",
+    linkedin: "https://www.linkedin.com/in/jriku",
+    portfolioRepo: "https://github.com/jriku47-a11y/Portfolio",
+
+    // Configurable contact fields. Empty = nothing is shown publicly.
+    email: "",
+    phone: "",
+    showEmail: false,
+    showPhone: false,
+
+    // Profile photo. Leave empty to use the initials avatar.
+    // To use a real photo, drop a file at this path.
+    photo: "",
+
+    // Resume. `available: false` renders an honest "add your PDF"
+    // panel instead of a broken download link.
+    resume: {
+      available: false,
+      file: "assets/resume.pdf",
+      label: "Jericho-Andren-Resume.pdf"
+    }
+  },
+
+  /* ---------------------------------------------------------
+     2. ABOUT
+     Edit the paragraphs to sound like you in your own words.
+     --------------------------------------------------------- */
+  about: {
+    paragraphs: [
+      "I am a <strong>BSIT student at Datamex College of Saint Adeline</strong>, based in Pasay City, Philippines. I am interested in <strong>building practical digital solutions</strong> and in improving my skills in <strong>software development, problem-solving, and modern web technologies</strong>.",
+      "What keeps me interested in this field is the part where something does not work and you have to work out <em>why</em>. I like taking something apart, finding the actual cause, and fixing it in a way that keeps working. I care about code and pages that are clear, readable, and accessible rather than clever for their own sake.",
+      "Right now I am building my foundation deliberately: I write things myself, test them myself, and record what went wrong so I do not repeat it. I am looking for an internship or entry-level role where I can learn from experienced developers and contribute to real work."
+    ],
+    strengths: [
+      "Willingness to investigate a problem before guessing at a fix",
+      "Clear written communication and honest documentation",
+      "Follow-through — finishing and checking work, not just starting it",
+      "Comfortable asking for help and reading documentation"
+    ],
+    interests: [
+      "Web applications and user-facing interfaces",
+      "How data is stored, queried, and kept correct",
+      "Practical cybersecurity habits as a default, not an afterthought"
+    ]
+  },
+
+  /* ---------------------------------------------------------
+     3. EDUCATION
+     Only list what is true. Leave a field "" to hide that line.
+     --------------------------------------------------------- */
+  education: {
+    items: [
+      {
+        title: "Bachelor of Science in Information Technology (BSIT)",
+        school: "Datamex College of Saint Adeline",
+        meta: "Undergraduate student",
+        detail:
+          "Building foundations across programming, web systems, databases, and introductory networking. Currently focused on web development and systems fundamentals."
+      },
+      {
+        title: "Self-directed study",
+        school: "Practice projects and documentation",
+        meta: "Ongoing",
+        detail:
+          "Most of my hands-on skill comes from building small projects end to end and writing down the problems I hit and how I resolved them."
+      }
+    ],
+    coursework: [
+      "Web Systems and HTML/CSS fundamentals",
+      "Databases and introductory SQL",
+      "Computer fundamentals",
+      "Programming fundamentals"
+    ]
+  },
+
+  /* ---------------------------------------------------------
+     4. TECHNICAL SKILLS
+     Levels are honest labels, not percentages:
+       beginner    — I have looked at it / just starting
+       familiar    — I have used it in real projects
+       intermediate— I am comfortable and have applied it repeatedly
+     Do NOT claim a level you cannot defend in an interview.
+     --------------------------------------------------------- */
+  skills: {
+    note:
+      "Levels describe real experience, not percentages. Each item below is something used in this portfolio or its backend.",
+    categories: [
+      {
+        name: "Frontend Development",
+        level: "familiar",
+        icon: "▣",
+        items: ["HTML5", "CSS3", "Vanilla JavaScript", "Responsive design", "Semantic markup"]
+      },
+      {
+        name: "Backend Development",
+        level: "familiar",
+        icon: "⬡",
+        items: ["PHP", "Form handling", "Client + server validation", "JSON API responses"]
+      },
+      {
+        name: "Programming",
+        level: "familiar",
+        icon: "◈",
+        items: ["JavaScript", "PHP"]
+      },
+      {
+        name: "Databases",
+        level: "beginner",
+        icon: "▤",
+        items: ["[ Add a database tool here once you have actually used one ]"]
+      },
+      {
+        name: "Development Tools",
+        level: "familiar",
+        icon: "⚙",
+        items: ["Git", "GitHub", "VS Code", "XAMPP", "Browser DevTools"]
+      },
+      {
+        name: "UI / UX",
+        level: "familiar",
+        icon: "◎",
+        items: ["Layout and spacing systems", "Keyboard accessibility", "Visible focus states", "Reduced-motion support"]
+      },
+      {
+        name: "Version Control",
+        level: "familiar",
+        icon: "⑂",
+        items: ["Git", "Branching and commits", "Pull / push and resolving conflicts", "README documentation"]
+      },
+      {
+        name: "Cybersecurity Awareness",
+        level: "familiar",
+        icon: "⬣",
+        items: ["Input validation", "Keeping secrets out of client code", "Rate limiting and abuse controls", "Safe error messages"]
+      },
+      {
+        name: "AI-Assisted Development",
+        level: "familiar",
+        icon: "✦",
+        items: ["Writing clear prompts", "Verifying output before use", "Reviewing suggested code"]
+      }
+    ]
+  },
+
+  /* ---------------------------------------------------------
+     5. PROJECTS
+     ------------------------------------------------------------
+     Only real projects. Use `published: false` to keep a slot
+     reserved without showing it — an unpublished entry renders
+     nothing at all, so you can never show a project that does
+     not exist yet.
+
+     Fields:
+       number       — display number
+       title        — project name
+       category     — short type label
+       type         — "Personal Project" / "Team Project" / "Academic"
+       role         — what YOU actually did (be specific and honest)
+       overview     — 2–4 sentences: what it is
+       problem      — the problem it addresses
+       solution     — what you built
+       process      — array of steps you genuinely followed
+       challenges   — array of { challenge, solution }
+       features     — array of real features
+       technologies — only what is genuinely used
+       repo         — repository URL, or "" if none
+       demo         — live demo URL, or "" if none
+       docs         — documentation URL, or "" if none
+       screenshot   — image path under assets/projects/, or ""
+       lessons      — what you learned
+       published    — true to show, false to reserve
+     =========================================================== */
+  projects: [
+    {
+      number: 1,
+      published: true,
+      title: "Personal Portfolio Website",
+      category: "Web Application",
+      type: "Personal Project",
+      role: "Sole developer — I designed, built, styled, and wired up the backend.",
+      overview:
+        "A single-page professional portfolio built to present my background, skills, and work to instructors, internship coordinators, and recruiters. It is the site you are reading now.",
+      problem:
+        "As a student I had no single place to present my background and projects in a form a recruiter could actually read in under a minute.",
+      solution:
+        "A fast, accessible single-page site with clear section navigation, a case-study format for projects, a working contact form backed by a real PHP mail endpoint, and a layout that holds up from 320 px phones to wide desktop monitors.",
+      process: [
+        "Outlined the sections a reviewer needs, in order",
+        "Built the design system first — colour, spacing, and type tokens",
+        "Wrote semantic markup for every section",
+        "Added responsive CSS, then checked narrow viewports before desktop",
+        "Implemented navigation, scroll reveal, accordions, and form validation",
+        "Wired the contact form to a PHP backend that keeps mail secrets on the server",
+        "Tested links, keyboard access, and mobile behaviour"
+      ],
+      challenges: [
+        {
+          challenge: "A contact form that only pretends to send mail.",
+          solution:
+            "The form posts to a PHP endpoint with server-side validation, a honeypot, and rate limiting. A success message appears only when the mail service confirms acceptance — otherwise it tells the visitor the message was not sent."
+        },
+        {
+          challenge: "Keeping mail credentials out of public code.",
+          solution:
+            "Secrets load server-side from a gitignored config file or environment variables. Nothing sensitive is ever exposed in the browser."
+        },
+        {
+          challenge: "Making a dense page readable on a small phone.",
+          solution:
+            "Fluid grids collapse to a single column, tap targets stay at least 44 px, and long content like tables scrolls inside its own container so the page never scrolls sideways."
+        }
+      ],
+      features: [
+        "Sticky navigation with active-section highlighting",
+        "Mobile menu that closes on selection",
+        "Scroll-reveal animations that respect reduced-motion preferences",
+        "Accessible accordions and expandable case studies",
+        "Validated contact form with real server-side delivery",
+        "Skip-to-content link and visible keyboard focus states",
+        "Back-to-top control"
+      ],
+      technologies: ["HTML5", "CSS3", "Vanilla JavaScript", "PHP 8", "PHPMailer", "Git", "GitHub Pages"],
+      repo: "https://github.com/jriku47-a11y/Portfolio",
+      demo: "",
+      docs: "https://github.com/jriku47-a11y/Portfolio#readme",
+      screenshot: "",
+      lessons:
+        "Building the design system first is what kept the page consistent. Writing the backend before the success message is what kept me honest — the form can only say it succeeded when the mail service actually accepted the message."
+    },
+
+    /* ------------------------------------------------------------
+       Reserved slots for Project 2 and Project 3.
+       Replace the placeholder values with a real project and set
+       published: true. While published is false nothing is shown,
+       so the page never advertises work that does not exist.
+       ------------------------------------------------------------ */
+    {
+      number: 2,
+      published: false,
+      title: "Project 2 — to be added",
+      category: "",
+      type: "",
+      role: "",
+      overview: "",
+      problem: "",
+      solution: "",
+      process: [],
+      challenges: [],
+      features: [],
+      technologies: [],
+      repo: "",
+      demo: "",
+      docs: "",
+      screenshot: "",
+      lessons: ""
+    },
+    {
+      number: 3,
+      published: false,
+      title: "Project 3 — to be added",
+      category: "",
+      type: "",
+      role: "",
+      overview: "",
+      problem: "",
+      solution: "",
+      process: [],
+      challenges: [],
+      features: [],
+      technologies: [],
+      repo: "",
+      demo: "",
+      docs: "",
+      screenshot: "",
+      lessons: ""
+    }
+  ],
+
+  /* ---------------------------------------------------------
+     6. PROBLEM-SOLVING CASES
+     ------------------------------------------------------------
+     Reusable format: problem, symptoms, investigation, root cause,
+     solution, tools, lesson.
+     Replace each placeholder with a REAL case from your own work.
+     Cases with `published: false` are not rendered.
+     =========================================================== */
+  cases: [
+    {
+      published: true,
+      title: "Reserved case 1 — replace with a real debugging story",
+      symptoms: "[ What you observed. Exact error text is better than a paraphrase. ]",
+      investigation: "[ What you actually did to narrow it down, in order. ]",
+      rootCause: "[ The real underlying cause, not the first guess. ]",
+      solution: "[ The fix, and how you confirmed it worked. ]",
+      tools: "[ e.g. Browser DevTools, PHP error log, Git ]",
+      lesson: "[ What you would do differently next time. ]"
+    },
+    {
+      published: true,
+      title: "Reserved case 2 — replace with a real debugging story",
+      symptoms: "[ ... ]",
+      investigation: "[ ... ]",
+      rootCause: "[ ... ]",
+      solution: "[ ... ]",
+      tools: "[ ... ]",
+      lesson: "[ ... ]"
+    },
+    {
+      published: true,
+      title: "Reserved case 3 — replace with a real debugging story",
+      symptoms: "[ ... ]",
+      investigation: "[ ... ]",
+      rootCause: "[ ... ]",
+      solution: "[ ... ]",
+      tools: "[ ... ]",
+      lesson: "[ ... ]"
+    }
+  ],
+
+  /* ---------------------------------------------------------
+     7. CYBERSECURITY AWARENESS
+     Framed as topics studied, never as professional expertise.
+     --------------------------------------------------------- */
+  security: {
+    disclaimer:
+      "I am not a security engineer and I do not present myself as one. What follows is the security awareness I have built as a student, and the controls I have actually implemented in my own code.",
+    topics: [
+      {
+        name: "Authentication",
+        body: "How login should work, why passwords must be hashed rather than stored, and what multi-factor authentication adds on top of a password."
+      },
+      {
+        name: "Session Management",
+        body: "Why a session has to be started consistently, how to end it safely, and why sessions must be invalidated on logout rather than just cleared."
+      },
+      {
+        name: "SQL Injection",
+        body: "Why building queries by pasting user input into strings is dangerous, and how prepared statements with bound parameters remove that whole class of bug."
+      },
+      {
+        name: "XSS & Output Handling",
+        body: "Treating anything a user submits as untrusted, and why escaping on output matters as much as validating on input."
+      },
+      {
+        name: "CSRF",
+        body: "Why a form on your own site can still be triggered from another one, and what tokens and same-site cookies are for."
+      },
+      {
+        name: "Secrets Handling",
+        body: "Passwords and API keys belong in environment variables or a server-side config file that is never committed — never in browser JavaScript."
+      },
+      {
+        name: "Data Protection",
+        body: "Collecting only what is needed, keeping it out of logs and error messages, and not exposing more than a user should see."
+      },
+      {
+        name: "Abuse Prevention",
+        body: "Rate limiting, honeypot fields, and generic error messages so an attacker learns nothing from a failed attempt."
+      }
+    ],
+    implementedTitle: "Controls implemented in this portfolio's contact form",
+    implemented: [
+      { label: "Server-side validation", body: "Every field is re-validated on the server. The browser check is a convenience, never the authority." },
+      { label: "Honeypot field", body: "A hidden field real people never fill in. Bots that fill it are accepted silently and never emailed." },
+      { label: "Rate limiting", body: "Five submissions per hour per IP address, so one visitor cannot flood the inbox." },
+      { label: "Secrets kept server-side", body: "Mail credentials load from a gitignored file or environment variables — never from client code." },
+      { label: "Errors that leak nothing", body: "Visitors get a plain sentence. Paths, stack traces, and keys stay in the server log." }
+    ]
+  },
+
+  /* ---------------------------------------------------------
+     8. AI LITERACY
+     Replace the log rows with real entries. Keep the columns.
+     =========================================================== */
+  ai: {
+    stance:
+      "AI is a tool I use to learn faster, not a replacement for my own judgement. Every suggestion is checked before it goes anywhere near my final work.",
+    principles: [
+      { label: "Assist", body: "Use AI to explain an error I do not understand, to draft boilerplate, or to show me alternatives I had not considered." },
+      { label: "Verify", body: "Never accept output on trust. Run the code, check the official documentation, and test the edge cases myself." },
+      { label: "Own", body: "The final decision is mine. If I cannot explain the code line by line, it does not ship — regardless of who drafted it." }
+    ],
+    verificationRule: "If I cannot explain it and test it, I do not ship it — no matter who drafted it.",
+    log: [
+      { tool: "[ Tool name ]", purpose: "[ What you used it for ]", output: "[ What you actually kept from it ]", verification: "[ How you checked it ]", decision: "[ Keep / Edit / Discard ]" },
+      { tool: "[ Tool name ]", purpose: "[ ... ]", output: "[ ... ]", verification: "[ ... ]", decision: "[ ... ]" },
+      { tool: "[ Tool name ]", purpose: "[ ... ]", output: "[ ... ]", verification: "[ ... ]", decision: "[ ... ]" }
+    ]
+  },
+
+  /* ---------------------------------------------------------
+     9. CAREER PLAN
+     Edit this as your plan develops.
+     --------------------------------------------------------- */
+  career: {
+    target: "Junior Software Developer — starting with an internship, moving toward full-stack web development.",
+    steps: [
+      {
+        when: "Now",
+        title: "Build honest proof",
+        current: true,
+        detail: "Finish and document real projects. Write READMEs that explain how to run them. Practise explaining my own code out loud, because that is what interviews actually test."
+      },
+      {
+        when: "0–6 months",
+        title: "Deepen the foundations",
+        detail: "Strengthen JavaScript and PHP. Get genuinely comfortable with SQL queries and form handling. Add real projects to this portfolio as I finish them."
+      },
+      {
+        when: "6–12 months",
+        title: "Gain team experience",
+        detail: "Land an internship or entry-level role. Learn code review, work inside someone else's structure, and ship features other people depend on."
+      },
+      {
+        when: "1–3 years",
+        title: "Own features end to end",
+        detail: "Move from backend basics to full-stack development. Take features from requirement to deployment, and help newer teammates the way my seniors help me now."
+      }
+    ],
+    learning: [
+      "JavaScript — async patterns and cleaner DOM handling",
+      "PHP and server-side application structure",
+      "SQL — joins, indexing, and writing maintainable queries",
+      "Version control workflow on a shared team repository",
+      "Testing habits — automated checks instead of manual-only confidence"
+    ]
+  },
+
+  /* ---------------------------------------------------------
+     10. FINAL REFLECTION
+     Written to be edited. Keep it true to your own experience.
+     --------------------------------------------------------- */
+  reflection: [
+    "Building this portfolio changed how I think about showing my work. I started by thinking the goal was to list what I know. What I have taken from building it is that a reviewer mostly wants to know how I think — how I break a problem down, how I check my own work, and whether what I claim is actually true.",
+    "The part that surprised me was how much the unglamorous work matters. Writing accessible markup, checking a layout at 320 pixels, and making sure a form reports failure honestly all took longer than the styling did. None of it looks impressive in a screenshot, and all of it is the difference between something that works and something that merely appears to.",
+    "Learning to treat security and verification as defaults rather than extras was the other big shift. Every form and every piece of user input is a place where things can go wrong quietly, so I now ask how it fails before I ask how it looks.",
+    "I still have clear gaps. I want to be much stronger in JavaScript, disciplined about testing, and better at explaining trade-offs clearly out loud. My next goal is simple: an internship where I can ship reviewed code with a team, and keep this page honest as I get there."
+  ],
+
+  /* ---------------------------------------------------------
+     11. CONTACT
+     --------------------------------------------------------- */
+  contact: {
+    intro:
+      "Best for internships, junior roles, and technical questions. If you have a role in mind, send the stack and the location and I will reply with relevant project links.",
+    formNote:
+      "Your message is validated on the server and delivered by email. A success message appears only once the mail service confirms it accepted the message."
+  }
+};
+
+// Expose for main.js
+window.PORTFOLIO = PORTFOLIO;

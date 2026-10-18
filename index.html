@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jericho Andren — Software Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Jericho Andren, BSIT student and aspiring software developer based in Pasay City, Philippines. Projects, problem-solving, cybersecurity awareness, responsible AI use, resume, career plan, and contact." />
+  <meta name="author" content="Jericho Andren" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Jericho Andren — Software Developer Portfolio" />
+  <meta property="og:description" content="BSIT student and aspiring software developer. Projects, problem-solving, cybersecurity awareness, and responsible AI use." />
+  <meta property="og:locale" content="en_PH" />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234f7cff'/><text x='50' y='67' font-size='46' text-anchor='middle' fill='white' font-family='monospace'>JA</text></svg>" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="bgfx" aria-hidden="true">
+    <div class="bgfx-grid"></div>
+    <div class="bgfx-glow a"></div>
+    <div class="bgfx-glow b"></div>
+    <div class="bgfx-glow c"></div>
+  </div>
+
+  <noscript>
+    <div class="noscript-note">
+      This portfolio uses a small amount of JavaScript to render its content from
+      <span class="mono">js/content.js</span>. Please enable JavaScript to view the sections below.
+    </div>
+  </noscript>
+
+  <!-- ======================= HEADER ======================= -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Jericho Andren — home">
+        <span class="brand-mark" aria-hidden="true">JA</span>
+        <span><small>Portfolio</small><strong>Jericho Andren</strong></span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a data-nav href="#home" class="active">Home</a></li>
+          <li><a data-nav href="#about">About</a></li>
+          <li><a data-nav href="#skills">Skills</a></li>
+          <li><a data-nav href="#projects">Projects</a></li>
+          <li><a data-nav href="#problem-solving">Cases</a></li>
+          <li><a data-nav href="#career">Career</a></li>
+          <li><a data-nav href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-ghost btn-sm" id="navGithub" href="https://github.com/jriku47-a11y" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="btn btn-primary btn-sm" href="#contact">Contact</a>
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+      <a data-nav href="#home">Home</a>
+      <a data-nav href="#about">About</a>
+      <a data-nav href="#education">Education</a>
+      <a data-nav href="#skills">Skills</a>
+      <a data-nav href="#projects">Projects</a>
+      <a data-nav href="#problem-solving">Problem-Solving Cases</a>
+      <a data-nav href="#security">Cybersecurity Awareness</a>
+      <a data-nav href="#ai">AI Literacy</a>
+      <a data-nav href="#presence">GitHub &amp; LinkedIn</a>
+      <a data-nav href="#resume">Resume</a>
+      <a data-nav href="#career">Career Plan</a>
+      <a data-nav href="#reflection">Reflection</a>
+      <a data-nav href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ======================= 01 HERO ======================= -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="pulse" aria-hidden="true"></span> <span id="heroAvailability">Open to internship / entry-level roles</span></span>
+
+          <h1 id="hero-title">Hi, I&rsquo;m <span class="grad">Jericho Andren</span></h1>
+          <p class="hero-role">BSIT Student / Aspiring Software Developer</p>
+
+          <p class="hero-lede">
+            I&rsquo;m interested in building practical digital solutions and improving my
+            skills in software development, problem-solving, and modern web technologies.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View My Projects</a>
+            <a class="btn btn-ghost" id="heroResumeBtn" href="#resume" hidden>Download Resume</a>
+            <a class="btn btn-ghost" id="heroGithub" href="https://github.com/jriku47-a11y" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>
+            <a class="btn btn-ghost" id="heroLinkedin" href="https://www.linkedin.com/in/jriku" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a>
+            <a class="btn btn-ghost" href="#contact">Contact</a>
+          </div>
+
+          <div class="hero-meta">
+            <span>&#128205; <span id="heroLocation">Pasay City, Philippines</span></span>
+            <a id="heroEmailLink" href="#" hidden></a>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-label="Developer profile card">
+          <div class="terminal-bar" aria-hidden="true">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="t">profile — jericho.js</span>
+          </div>
+
+          <div class="terminal">
+            <div><span class="t-dim">// whoami</span></div>
+            <div><span class="t-blue">const</span> <span class="t-white">developer</span> <span class="t-dim">=</span> <span class="t-green">{</span></div>
+            <div>&nbsp;&nbsp;name: <span class="t-yellow">&quot;Jericho Andren&quot;</span>,</div>
+            <div>&nbsp;&nbsp;role: <span class="t-yellow">&quot;BSIT Student&quot;</span>,</div>
+            <div>&nbsp;&nbsp;based_in: <span class="t-yellow">&quot;Pasay City, PH&quot;</span>,</div>
+            <div>&nbsp;&nbsp;focus: [<span class="t-yellow">&quot;web development&quot;</span>, <span class="t-yellow">&quot;problem-solving&quot;</span>],</div>
+            <div>&nbsp;&nbsp;building: <span class="t-green">&quot;real, documented projects&quot;</span></div>
+            <div><span class="t-green">}</span><span class="t-dim">;</span></div>
+            <div class="terminal-caret-line"><span class="t-dim" id="termTyping"></span></div>
+          </div>
+
+          <div class="profile-strip">
+            <!-- No photo supplied: initials placeholder shown instead of a missing image. -->
+            <div class="avatar" id="heroAvatar" role="img" aria-label="Profile initials placeholder for Jericho Andren">JA</div>
+            <div class="profile-strip-text">
+              <strong>Jericho Andren</strong>
+              <small>BSIT Student &middot; Pasay City, Philippines</small>
+            </div>
+            <a class="btn btn-ghost btn-sm" href="#contact">Get in touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 02 ABOUT ======================= -->
+    <section class="block" id="about" aria-labelledby="about-t">
+      <div class="container">
+        <p class="kicker reveal">01 — About Me</p>
+        <h2 class="h2 reveal" id="about-t">A student developer who prefers to understand the problem before fixing it.</h2>
+        <p class="sub reveal">Background, strengths, and where I am heading.</p>
+
+        <div class="grid-2">
+          <article class="card reveal">
+            <h3 class="card-title">Profile</h3>
+            <div id="aboutParagraphs" class="prose"></div>
+            <div class="tag-row" id="aboutTags">
+              <span class="tag">Education-first</span>
+              <span class="tag teal">Security-aware</span>
+              <span class="tag grey">AI-verified workflow</span>
+            </div>
+          </article>
+
+          <div class="card reveal">
+            <h3 class="card-title">Strengths &amp; Interests</h3>
+            <div class="grid-2 grid-2-tight">
+              <div>
+                <h4 class="mini-head">Strengths</h4>
+                <ul class="tick-list" id="aboutStrengths"></ul>
+              </div>
+              <div>
+                <h4 class="mini-head">Interests</h4>
+                <ul class="tick-list" id="aboutInterests"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 03 EDUCATION ======================= -->
+    <section class="block" id="education" aria-labelledby="edu-t">
+      <div class="container">
+        <p class="kicker reveal">02 — Education</p>
+        <h2 class="h2 reveal" id="edu-t">Where I studied, and what I focused on.</h2>
+        <p class="sub reveal">Formal study plus the self-directed work that actually taught me to build.</p>
+
+        <div class="grid-2">
+          <div class="card reveal">
+            <h3 class="card-title">Academic Background</h3>
+            <ul class="timeline" id="eduTimeline"></ul>
+          </div>
+
+          <div class="card reveal">
+            <h3 class="card-title">Relevant Coursework</h3>
+            <ul class="tick-list" id="eduCoursework"></ul>
+            <p class="hint" style="margin-top:1rem">
+              Edit this list in <span class="mono">js/content.js</span> &rarr; <span class="mono">education</span>
+              to match your actual subjects.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 04 SKILLS ======================= -->
+    <section class="block" id="skills" aria-labelledby="skills-t">
+      <div class="container">
+        <p class="kicker reveal">03 — Technical Skills</p>
+        <h2 class="h2 reveal" id="skills-t">Categorised, with honest levels instead of percentages.</h2>
+        <p class="sub reveal" id="skillsNote"></p>
+        <div class="grid-3" id="skillsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ======================= 05 PROJECTS ======================= -->
+    <section class="block" id="projects" aria-labelledby="proj-t">
+      <div class="container">
+        <p class="kicker reveal">04 — Projects</p>
+        <h2 class="h2 reveal" id="proj-t">Case studies, not screenshots.</h2>
+        <p class="sub reveal">
+          Each project opens into a full case study: the problem, what I built, my role,
+          the process, the challenges, and what I learned.
+        </p>
+
+        <div class="editor-note reveal">
+          <strong>For Jericho:</strong> add projects in <span class="mono">js/content.js</span> &rarr;
+          <span class="mono">projects</span>. Set <span class="mono">published: true</span> only when
+          the details are real — reserved slots stay hidden, so this page never shows work that
+          does not exist yet.
+        </div>
+
+        <div id="projectsList"></div>
+      </div>
+    </section>
+
+    <!-- ======================= 06 PROBLEM SOLVING ======================= -->
+    <section class="block" id="problem-solving" aria-labelledby="ps-t">
+      <div class="container">
+        <p class="kicker reveal">05 — Problem-Solving Cases</p>
+        <h2 class="h2 reveal" id="ps-t">How I debug when something breaks.</h2>
+        <p class="sub reveal">
+          Every case follows the same trail: symptoms &rarr; investigation &rarr; root cause
+          &rarr; solution &rarr; tools &rarr; lesson.
+        </p>
+
+        <div class="editor-note reveal">
+          <strong>For Jericho:</strong> these are empty case slots in the required format.
+          Replace each one in <span class="mono">js/content.js</span> &rarr; <span class="mono">cases</span>
+          with a real debugging story from your own work.
+        </div>
+
+        <div class="acc reveal" id="casesList"></div>
+      </div>
+    </section>
+
+    <!-- ======================= 07 CYBERSECURITY ======================= -->
+    <section class="block" id="security" aria-labelledby="sec-t">
+      <div class="container">
+        <p class="kicker reveal">06 — Cybersecurity Awareness</p>
+        <h2 class="h2 reveal" id="sec-t">Defensive habits, treated as defaults.</h2>
+        <p class="sub reveal" id="secDisclaimer"></p>
+
+        <div class="grid-3" id="secTopics"></div>
+
+        <div class="card reveal" style="margin-top:1.1rem">
+          <span class="tag teal">Implemented, not just read</span>
+          <h3 class="card-title" id="secImplTitle"></h3>
+          <div class="grid-2" id="secImplemented"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 08 AI LITERACY ======================= -->
+    <section class="block" id="ai" aria-labelledby="ai-t">
+      <div class="container">
+        <p class="kicker reveal">07 — AI Literacy</p>
+        <h2 class="h2 reveal" id="ai-t">AI assists. I own the outcome.</h2>
+        <p class="sub reveal" id="aiStance"></p>
+
+        <div class="grid-3" id="aiPrinciples"></div>
+
+        <div class="card reveal" style="margin-top:1.1rem">
+          <p class="pull" id="aiRule"></p>
+        </div>
+
+        <h3 class="h3 reveal" style="margin-top:2rem">AI Usage Log</h3>
+        <p class="sub reveal">
+          Every AI-assisted task, what came back, how I checked it, and what I decided.
+        </p>
+
+        <div class="table-wrap reveal">
+          <table>
+            <caption class="sr-only">AI usage log: tool, purpose, output used, verification method, and final human decision</caption>
+            <thead>
+              <tr>
+                <th scope="col">AI Tool</th>
+                <th scope="col">Purpose / Task</th>
+                <th scope="col">Output Used</th>
+                <th scope="col">Verification</th>
+                <th scope="col">Human Decision</th>
+              </tr>
+            </thead>
+            <tbody id="aiLogBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 09 PRESENCE ======================= -->
+    <section class="block" id="presence" aria-labelledby="pres-t">
+      <div class="container">
+        <p class="kicker reveal">08 — Professional Presence</p>
+        <h2 class="h2 reveal" id="pres-t">Where an engineer actually gets found.</h2>
+        <p class="sub reveal">My public profiles, kept consistent with everything else on this page.</p>
+        <div class="presence-grid" id="presenceGrid"></div>
+      </div>
+    </section>
+
+    <!-- ======================= 10 RESUME ======================= -->
+    <section class="block" id="resume" aria-labelledby="res-t">
+      <div class="container">
+        <p class="kicker reveal">09 — Resume</p>
+        <h2 class="h2 reveal" id="res-t">One document, recruiter-ready.</h2>
+        <p class="sub reveal">A single-page PDF is best for recruiters, panelists, and internship coordinators.</p>
+        <div id="resumeArea"></div>
+      </div>
+    </section>
+
+    <!-- ======================= 11 CAREER ======================= -->
+    <section class="block" id="career" aria-labelledby="car-t">
+      <div class="container">
+        <p class="kicker reveal">10 — Career Plan</p>
+        <h2 class="h2 reveal" id="car-t">Where I am going, step by step.</h2>
+        <p class="sub reveal"><strong style="color:var(--text)">Target position:</strong> <span id="careerTarget"></span></p>
+
+        <div class="card reveal roadmap" id="careerRoadmap"></div>
+
+        <div class="card reveal" style="margin-top:1.1rem">
+          <h3 class="card-title">What I am actively learning</h3>
+          <ul class="tick-list" id="careerLearning"></ul>
+          <p class="hint" style="margin-top:1rem">
+            Edit the roadmap and this list in <span class="mono">js/content.js</span> &rarr;
+            <span class="mono">career</span> as your plan develops.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 12 REFLECTION ======================= -->
+    <section class="block" id="reflection" aria-labelledby="ref-t">
+      <div class="container">
+        <p class="kicker reveal">11 — Final Reflection</p>
+        <h2 class="h2 reveal" id="ref-t">What building this taught me.</h2>
+        <div class="card reveal">
+          <div class="reflection" id="reflectionBody"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 13 CONTACT ======================= -->
+    <section class="block" id="contact" aria-labelledby="con-t">
+      <div class="container">
+        <p class="kicker reveal">12 — Contact</p>
+        <h2 class="h2 reveal" id="con-t">Let&rsquo;s talk about your team&rsquo;s problems.</h2>
+        <p class="sub reveal" id="contactIntro"></p>
+
+        <div class="contact-grid">
+          <div class="card reveal">
+            <h3 class="card-title">Direct channels</h3>
+            <ul class="channel-list" id="contactChannels"></ul>
+            <hr class="rule" />
+            <p class="hint">
+              For recruiters: share the role, the stack, and the location and I&rsquo;ll reply with
+              relevant project links and availability.
+            </p>
+            <p class="hint">
+              I reply from Pasay City, Philippines, and I do not publish a residential address.
+            </p>
+          </div>
+
+          <form class="card reveal" id="contactForm" action="api/contact.php" method="post" novalidate aria-label="Contact form">
+            <!-- Real server-side delivery. Success is only reported when the
+                 mail service confirms it accepted the message. -->
+            <input type="hidden" name="_subject" value="Portfolio inquiry" />
+            <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="field" data-field="name">
+              <label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" placeholder="Your full name" autocomplete="name" required />
+              <p class="error">Please enter your name.</p>
+            </div>
+
+            <div class="field" data-field="email">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+              <p class="error">Enter a valid email address.</p>
+            </div>
+
+            <div class="field" data-field="subject">
+              <label for="f-subject">Subject</label>
+              <input id="f-subject" name="subject" type="text" placeholder="Internship / Junior role / Project inquiry" required />
+              <p class="error">Please add a subject.</p>
+            </div>
+
+            <div class="field" data-field="message">
+              <label for="f-message">Message</label>
+              <textarea id="f-message" name="message" placeholder="Hi — I saw your project on&hellip; I'd like to discuss&hellip;" required></textarea>
+              <p class="hint">At least 10 characters. Please do not include sensitive information.</p>
+              <p class="error">Message needs at least 10 characters.</p>
+            </div>
+
+            <button class="btn btn-primary" type="submit" id="sendBtn" style="width:100%">Send Message</button>
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+            <p class="hint" id="formNote"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button id="toTop" type="button" aria-label="Back to top" title="Back to top">&#8593;</button>
+
+  <footer>
+    <div class="container foot">
+      <span>
+        &copy; <span id="year">2026</span> Jericho Andren &middot;
+        Built with vanilla HTML, CSS &amp; JavaScript &middot;
+        <span class="mono">js/content.js</span> drives all content
+      </span>
+      <nav aria-label="Footer">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+        <a id="footGithub" href="https://github.com/jriku47-a11y" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a id="footLinkedin" href="https://www.linkedin.com/in/jriku" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/content.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
