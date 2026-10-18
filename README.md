@@ -123,12 +123,28 @@ inspected without leaving the page.
 
 ```
 projects/it-equipment-inventory/inventory_analytics.sql
+assets/vendor/sql-wasm.js, sql-wasm.wasm   SQLite compiled to WebAssembly
 ```
 
 Self-contained SQLite file: schema, constraints, 50 cleaned records and three
 queries. Open it in the SQLite CLI or DB Browser for SQLite and it runs as-is.
 Every figure quoted in that project's case study was produced by executing this
 file, so the claims on the site are reproducible rather than asserted.
+
+### Live database explorer
+
+The **Live Database** section runs that SQL file in the visitor's browser using
+SQLite compiled to WebAssembly (`sql.js`). It is not a mock-up and not a
+screenshot — the runtime is downloaded on demand, the `.sql` file is fetched from
+this repository, and the queries are executed locally.
+
+- Nothing is pre-rendered; every number is computed by SQLite at page load
+- Nothing is sent to a server, and the database is discarded when the visitor leaves
+- The runtime loads only when the visitor presses **Open the live database**
+- Figures match the case study exactly because both come from the same file
+
+If the runtime cannot load, the section says so plainly and points to the SQL
+file rather than showing a stale or invented result.
 
 ---
 

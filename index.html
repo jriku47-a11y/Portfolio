@@ -239,10 +239,50 @@
       </div>
     </section>
 
+    <!-- ======================= 05 LIVE DATABASE ======================= -->
+    <section class="block" id="database" aria-labelledby="db-t">
+      <div class="container">
+        <p class="kicker reveal">05 — Live Database</p>
+        <h2 class="h2 reveal" id="db-t">Run the inventory database in your browser.</h2>
+        <p class="sub reveal">
+          SQLite compiled to WebAssembly, running entirely on this page. It loads the same
+          <span class="mono">inventory_analytics.sql</span> file from the repository, builds the
+          database, and executes the three queries &mdash; nothing is pre-rendered or hardcoded.
+        </p>
+
+        <div class="card db-card reveal">
+          <div class="db-head">
+            <div>
+              <span class="tag teal">Interactive</span>
+              <h3 class="card-title" style="margin:.6rem 0 .2rem">IT Equipment Inventory Analytics</h3>
+              <p class="hint" id="dbStatus">Loading the SQLite runtime&hellip;</p>
+            </div>
+            <button class="btn btn-primary" id="dbOpen" type="button">Open the live database</button>
+          </div>
+
+          <div id="dbExplorer" hidden>
+            <div class="db-tabs" role="tablist" aria-label="Database views">
+              <button class="db-tab is-active" type="button" role="tab" aria-selected="true" data-view="kpi">Query 1 &middot; KPIs</button>
+              <button class="db-tab" type="button" role="tab" aria-selected="false" data-view="types">Query 2 &middot; By type</button>
+              <button class="db-tab" type="button" role="tab" aria-selected="false" data-view="risk">Query 3 &middot; Risk</button>
+              <button class="db-tab" type="button" role="tab" aria-selected="false" data-view="records">Browse 50 records</button>
+            </div>
+
+            <div class="db-panel" id="dbPanel" role="tabpanel" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <p class="hint reveal" style="margin-top:1rem">
+          Nothing is sent to a server. The database is built in your browser from the SQL file and
+          discarded when you leave the page.
+        </p>
+      </div>
+    </section>
+
     <!-- ======================= 06 PROBLEM SOLVING ======================= -->
     <section class="block" id="problem-solving" aria-labelledby="ps-t">
       <div class="container">
-        <p class="kicker reveal">05 — Problem-Solving Cases</p>
+        <p class="kicker reveal">06 — Problem-Solving Cases</p>
         <h2 class="h2 reveal" id="ps-t">How I debug when something breaks.</h2>
         <p class="sub reveal">
           Every case follows the same trail: symptoms &rarr; investigation &rarr; root cause
@@ -262,7 +302,7 @@
     <!-- ======================= 07 CYBERSECURITY ======================= -->
     <section class="block" id="security" aria-labelledby="sec-t">
       <div class="container">
-        <p class="kicker reveal">06 — Cybersecurity Awareness</p>
+        <p class="kicker reveal">07 — Cybersecurity Awareness</p>
         <h2 class="h2 reveal" id="sec-t">Defensive habits, treated as defaults.</h2>
         <p class="sub reveal" id="secDisclaimer"></p>
 
@@ -279,7 +319,7 @@
     <!-- ======================= 08 AI LITERACY ======================= -->
     <section class="block" id="ai" aria-labelledby="ai-t">
       <div class="container">
-        <p class="kicker reveal">07 — AI Literacy</p>
+        <p class="kicker reveal">08 — AI Literacy</p>
         <h2 class="h2 reveal" id="ai-t">AI assists. I own the outcome.</h2>
         <p class="sub reveal" id="aiStance"></p>
 
@@ -315,7 +355,7 @@
     <!-- ======================= 09 PRESENCE ======================= -->
     <section class="block" id="presence" aria-labelledby="pres-t">
       <div class="container">
-        <p class="kicker reveal">08 — Professional Presence</p>
+        <p class="kicker reveal">09 — Professional Presence</p>
         <h2 class="h2 reveal" id="pres-t">Where an engineer actually gets found.</h2>
         <p class="sub reveal">My public profiles, kept consistent with everything else on this page.</p>
         <div class="presence-grid" id="presenceGrid"></div>
@@ -325,7 +365,7 @@
     <!-- ======================= 10 RESUME ======================= -->
     <section class="block" id="resume" aria-labelledby="res-t">
       <div class="container">
-        <p class="kicker reveal">09 — Resume</p>
+        <p class="kicker reveal">10 — Resume</p>
         <h2 class="h2 reveal" id="res-t">One document, recruiter-ready.</h2>
         <p class="sub reveal">A single-page PDF is best for recruiters, panelists, and internship coordinators.</p>
         <div id="resumeArea"></div>
@@ -335,7 +375,7 @@
     <!-- ======================= 11 CAREER ======================= -->
     <section class="block" id="career" aria-labelledby="car-t">
       <div class="container">
-        <p class="kicker reveal">10 — Career Plan</p>
+        <p class="kicker reveal">11 — Career Plan</p>
         <h2 class="h2 reveal" id="car-t">Where I am going, step by step.</h2>
         <p class="sub reveal"><strong style="color:var(--text)">Target position:</strong> <span id="careerTarget"></span></p>
 
@@ -355,7 +395,7 @@
     <!-- ======================= 12 REFLECTION ======================= -->
     <section class="block" id="reflection" aria-labelledby="ref-t">
       <div class="container">
-        <p class="kicker reveal">11 — Final Reflection</p>
+        <p class="kicker reveal">12 — Final Reflection</p>
         <h2 class="h2 reveal" id="ref-t">What building this taught me.</h2>
         <div class="card reveal">
           <div class="reflection" id="reflectionBody"></div>
@@ -366,7 +406,7 @@
     <!-- ======================= 13 CONTACT ======================= -->
     <section class="block" id="contact" aria-labelledby="con-t">
       <div class="container">
-        <p class="kicker reveal">12 — Contact</p>
+        <p class="kicker reveal">13 — Contact</p>
         <h2 class="h2 reveal" id="con-t">Let&rsquo;s talk about your team&rsquo;s problems.</h2>
         <p class="sub reveal" id="contactIntro"></p>
 
@@ -446,5 +486,6 @@
 
   <script src="js/content.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/db-explorer.js"></script>
 </body>
 </html>
