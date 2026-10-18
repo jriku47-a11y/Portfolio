@@ -16,7 +16,8 @@ Everything used is listed here because it is genuinely present in this repositor
 | Layer | Technology | Where it is used |
 |---|---|---|
 | Markup | HTML5 (semantic elements, ARIA) | `index.html` |
-| Styling | CSS3 (custom properties, grid, flexbox, container-free responsive breakpoints) | `css/style.css` |
+| Styling | CSS3 (custom properties, grid, flexbox) | `css/style.css` |
+| Typography | Newsreader (display), Instrument Sans (body), JetBrains Mono (labels) | Google Fonts |
 | Interactivity | Vanilla JavaScript (ES5-compatible, no framework, no build step) | `js/main.js` |
 | Content | Single JS config object | `js/content.js` |
 | Backend | PHP 8 | `api/contact.php` |
@@ -25,6 +26,38 @@ Everything used is listed here because it is genuinely present in this repositor
 | Hosting | GitHub Pages (static site) | `.nojekyll` |
 
 There is **no build step, no bundler, and no npm dependency**. Clone it and it runs.
+
+---
+
+## Design system
+
+A deliberately **light editorial** direction, built to read like a technical journal rather than a
+neon dev template.
+
+| Token group | Choice |
+|---|---|
+| Ground | Warm paper `#faf7f2`, white surfaces |
+| Ink | Near-black warm `#15130f`, with two muted steps |
+| Accent | Burnt orange `#c2410c` (kickers, rules, tags, active nav underline) |
+| Support | Olive for intermediate skill levels, deep green/red for form status |
+| Rules | Hairline 1px borders instead of heavy shadows or glassmorphism |
+| Radii | Tight — 5px controls, 8px cards, 12px large panels |
+| Display type | Newsreader serif, italic used for the name |
+| Body type | Instrument Sans |
+| Labels | JetBrains Mono, uppercase, wide letter-spacing |
+
+Design decisions worth noting:
+
+- **No gradients on text.** The name is solid accent orange, not a gradient fill.
+- **No glassmorphism, no blurred glow orbs, no grid backdrops.** A single faint warm tint keeps
+  the page from reading as a flat sheet.
+- **The hero uses a portrait slot**, not a code window. It is an obvious place to drop a real
+  headshot.
+- **Motion is restrained**: one 14px fade-up on scroll reveal, disabled entirely under
+  `prefers-reduced-motion`.
+- **The header collapses to the mobile menu below 900px**, which is what prevents horizontal
+  overflow on tablets.
+- **A print stylesheet** strips the chrome so the page prints cleanly.
 
 ---
 
@@ -159,6 +192,12 @@ wireframe placeholder instead of a broken image.
   lesson: "What you would do differently next time."
 }
 ```
+
+### Profile photo
+
+Drop a photo at `assets/profile.jpg`, then set `personal.photo: "assets/profile.jpg"` in
+`js/content.js`. The initials slot in the hero is replaced automatically. Until then the hero
+shows a clean framed placeholder rather than a broken image.
 
 ### Adding a resume
 

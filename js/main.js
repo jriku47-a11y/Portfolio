@@ -584,24 +584,6 @@
     });
   }
 
-  function initTerminal() {
-    const caret = $("#termTyping");
-    if (!caret || prefersReduced) return;
-    const text = "$ building portfolio — honest content only";
-    caret.textContent = "";
-    let i = 0;
-    const tick = () => {
-      caret.textContent = text.slice(0, i);
-      i += 1;
-      if (i <= text.length) {
-        setTimeout(tick, 32);
-      } else {
-        caret.appendChild(el("span", "caret"));
-      }
-    };
-    setTimeout(tick, 500);
-  }
-
   function initBackToTop() {
     const btn = $("#toTop");
     if (!btn) return;
@@ -745,7 +727,6 @@
     initActiveNav();
     initReveal();
     initAccordions();
-    initTerminal();
     initBackToTop();
     initContactForm();
   }

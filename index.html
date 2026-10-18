@@ -15,19 +15,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234f7cff'/><text x='50' y='67' font-size='46' text-anchor='middle' fill='white' font-family='monospace'>JA</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='8' fill='%2315130f'/><text x='50' y='66' font-size='42' text-anchor='middle' fill='%23c2410c' font-family='Georgia,serif'>J</text></svg>" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="bgfx" aria-hidden="true">
-    <div class="bgfx-grid"></div>
-    <div class="bgfx-glow a"></div>
-    <div class="bgfx-glow b"></div>
-    <div class="bgfx-glow c"></div>
-  </div>
+  <div class="bg-paper" aria-hidden="true"></div>
 
   <noscript>
     <div class="noscript-note">
@@ -105,39 +100,28 @@
           </div>
 
           <div class="hero-meta">
-            <span>&#128205; <span id="heroLocation">Pasay City, Philippines</span></span>
+            <span><span id="heroLocation">Pasay City, Philippines</span></span>
             <a id="heroEmailLink" href="#" hidden></a>
           </div>
         </div>
 
-        <div class="hero-card" aria-label="Developer profile card">
-          <div class="terminal-bar" aria-hidden="true">
-            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-            <span class="t">profile — jericho.js</span>
+        <figure class="portrait">
+          <div class="portrait-frame">
+            <!-- No photo supplied: the initials slot stands in for a headshot.
+                 To use a real photo, drop a file at assets/profile.jpg and set
+                 personal.photo in js/content.js. -->
+            <div class="portrait-photo" id="heroAvatar" role="img" aria-label="Profile photo placeholder showing the initials J A for Jericho Andren">JA</div>
           </div>
-
-          <div class="terminal">
-            <div><span class="t-dim">// whoami</span></div>
-            <div><span class="t-blue">const</span> <span class="t-white">developer</span> <span class="t-dim">=</span> <span class="t-green">{</span></div>
-            <div>&nbsp;&nbsp;name: <span class="t-yellow">&quot;Jericho Andren&quot;</span>,</div>
-            <div>&nbsp;&nbsp;role: <span class="t-yellow">&quot;BSIT Student&quot;</span>,</div>
-            <div>&nbsp;&nbsp;based_in: <span class="t-yellow">&quot;Pasay City, PH&quot;</span>,</div>
-            <div>&nbsp;&nbsp;focus: [<span class="t-yellow">&quot;web development&quot;</span>, <span class="t-yellow">&quot;problem-solving&quot;</span>],</div>
-            <div>&nbsp;&nbsp;building: <span class="t-green">&quot;real, documented projects&quot;</span></div>
-            <div><span class="t-green">}</span><span class="t-dim">;</span></div>
-            <div class="terminal-caret-line"><span class="t-dim" id="termTyping"></span></div>
+          <figcaption class="portrait-caption">
+            <strong>Jericho Andren</strong>
+            <span>BSIT Student &middot; Pasay City, Philippines</span>
+          </figcaption>
+          <div class="portrait-tags">
+            <span class="tag">Web development</span>
+            <span class="tag">Problem-solving</span>
+            <span class="tag">Responsible AI</span>
           </div>
-
-          <div class="profile-strip">
-            <!-- No photo supplied: initials placeholder shown instead of a missing image. -->
-            <div class="avatar" id="heroAvatar" role="img" aria-label="Profile initials placeholder for Jericho Andren">JA</div>
-            <div class="profile-strip-text">
-              <strong>Jericho Andren</strong>
-              <small>BSIT Student &middot; Pasay City, Philippines</small>
-            </div>
-            <a class="btn btn-ghost btn-sm" href="#contact">Get in touch</a>
-          </div>
-        </div>
+        </figure>
       </div>
     </section>
 
