@@ -256,10 +256,10 @@ const PORTFOLIO = {
       ],
       technologies: ["PHP", "MySQL (MariaDB)", "MySQLi", "PDO", "HTML5", "CSS3", "JavaScript", "PHPMailer", "Apache / XAMPP"],
       repo: "https://github.com/jriku47-a11y/Salon",
-      demo: "",
+      demo: "https://jriku47-a11y.github.io/Salon/",
       docs: "https://github.com/jriku47-a11y/Salon#readme",
       demoNote:
-        "Requires a PHP host and MySQL, so it is not hosted on GitHub Pages. The repository contains the full source, the sanitized schema, and setup instructions.",
+        "The demo is a showcase with real screenshots of the running system. The live app itself needs a PHP host and MySQL, which GitHub Pages cannot run, so the repository holds the full source, the sanitized schema and setup instructions.",
       screenshot: "",
       lessons:
         "Access control is easier to get right when the page and the link are both gated — hiding a menu item is not security. Passwords are hashed with bcrypt and every query is a prepared statement, but this build has no CSRF tokens and the database password was left in a config file. Both belong at the top of my list to fix next."
@@ -379,9 +379,9 @@ const PORTFOLIO = {
       ],
       technologies: ["HTML5", "CSS3", "Vanilla JavaScript", "PHP 8", "PHPMailer", "Git", "GitHub Pages"],
       repo: "https://github.com/jriku47-a11y/Portfolio",
-      demo: "",
+      demo: "https://jriku47-a11y.github.io/Portfolio/",
       docs: "https://github.com/jriku47-a11y/Portfolio#readme",
-      demoNote: "Runs entirely on GitHub Pages. The contact form needs a PHP host, so on Pages it reports that the mail service is not connected and points visitors to LinkedIn instead.",
+      demoNote: "Runs entirely on GitHub Pages, including the live SQLite explorer. The contact form needs a PHP host, so on Pages it reports that the mail service is not connected and points visitors to LinkedIn instead.",
       screenshot: "",
       lessons:
         "Building the design system first is what kept the page consistent. Writing the backend before the success message is what kept me honest — the form can only say it succeeded when the mail service actually accepted the message."
