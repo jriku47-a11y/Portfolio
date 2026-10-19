@@ -142,6 +142,76 @@
   }
 
   /* ============================================================
+     RENDER — CERTIFICATIONS
+     Only real certificates. A missing screenshot falls back to the
+     neutral placeholder instead of a broken image.
+     ============================================================ */
+  function renderCertifications() {
+    const certs = CFG.certifications || {};
+    const certNote = $("#certNote");
+    if (certNote) certNote.textContent = certs.note || "";
+
+    const items = (certs.items || []).filter((c) => c.title);
+    const host = $("#certificationsGrid");
+    host.innerHTML = "";
+
+    if (!items.length) {
+      host.appendChild(
+        el(
+          "div",
+          "card slot-card",
+          "<h3>No certifications added yet</h3><p>Add them in <span class=\"mono\">js/content.js</span> &rarr; <span class=\"mono\">certifications</span>.</p>"
+        )
+      );
+      return;
+    }
+
+    const dl = (rows) =>
+      `<dl>${rows.filter((r) => r[1]).map((r) => `<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("")}</dl>`;
+
+    items.forEach((c) => {
+      const article = el("article", "card cert-card reveal");
+
+      /* ---- media / certificate image ---- */
+      const media = el("div", "cert-media" + (c.screenshot ? " has-shot" : ""));
+      media.innerHTML = `
+        <img class="cert-shot" src="${c.screenshot || ""}"
+             alt="${c.title} — certificate of participation" loading="lazy"
+             onerror="this.parentElement.classList.remove('has-shot');this.remove()" />
+        <div class="mock" aria-hidden="true">
+          <div class="mock-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+          <div class="mock-body">
+            <div class="mock-line mid"></div><div class="mock-line"></div><div class="mock-line short"></div>
+            <div class="mock-row"><div class="mock-btn"></div><div class="mock-btn alt"></div></div>
+          </div>
+        </div>
+        <small class="mono media-note">Certificate placeholder — add the real capture under assets/certifications/</small>`;
+
+      /* ---- body ---- */
+      const body = el("div", "cert-body");
+      body.innerHTML = `
+        <div class="tag-row">
+          <span class="tag">Certificate</span>
+          <span class="tag teal">${c.mode ? "Online Webinar" : "Participation"}</span>
+        </div>
+        <h3>${c.title}</h3>
+        ${dl([
+          ["Issuer", c.issuer || ""],
+          ["Date held", c.date || ""],
+          ["Duration", c.duration || ""],
+          ["Format", c.mode || ""],
+          ["Speaker", c.speaker || ""]
+        ])}
+        <p class="cert-note">Certificate of participation from ${c.issuer || "the organiser"}. This records attendance at a short course — it is not a professional licence and not a certification of competence.</p>
+      `;
+
+      article.appendChild(media);
+      article.appendChild(body);
+      host.appendChild(article);
+    });
+  }
+
+  /* ============================================================
      RENDER — PROJECTS
      Only `published: true` entries are rendered, so a reserved
      slot can never advertise a project that does not exist.
@@ -896,6 +966,7 @@
     renderAbout();
     renderEducation();
     renderSkills();
+    renderCertifications();
     renderProjects();
     renderCases();
     renderSecurity();

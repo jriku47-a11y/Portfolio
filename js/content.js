@@ -176,6 +176,64 @@ const PORTFOLIO = {
   },
 
   /* ---------------------------------------------------------
+     4b. CERTIFICATIONS
+     Participation certificates from webinars and short courses.
+     Only list real ones. `screenshot` is an image under
+     assets/certifications/; leave "" to show a neutral placeholder
+     instead of a broken image.
+     Fields:
+       title      — exact course / webinar title
+       issuer     — organising body
+       date       — when it was held
+       duration   — as printed on the certificate
+       mode       — how it was delivered
+       speaker    — optional, if the certificate names one
+       screenshot — image path under assets/certifications/, or ""
+     --------------------------------------------------------- */
+  certifications: {
+    note:
+      "Certificates of participation from webinars and short courses I have completed alongside my studies. These are attendance certificates, not professional licences — I am honest about the difference.",
+    items: [
+      {
+        title: "Digital Office Mastery: Essential Skills for Computer & Administrative Staff",
+        issuer: "Ethel Programming Computer Programming Services",
+        date: "August 5, 2026",
+        duration: "1 hr",
+        mode: "Online Webinar via Google Meet",
+        speaker: "Mr. Ryan Jeffrey Ricafort",
+        screenshot: "assets/certifications/digital-office-mastery.jpg"
+      },
+      {
+        title: "The Future of Network Security, AI, Automation and Zero Trust",
+        issuer: "Ethel Programming Computer Programming Services",
+        date: "August 5, 2026",
+        duration: "2 hr",
+        mode: "Online Webinar via Google Meet",
+        speaker: "",
+        screenshot: "assets/certifications/network-security-ai-zero-trust.jpg"
+      },
+      {
+        title: "Cyber Frontlines 2026: Outsmarting Modern Cyber Threats",
+        issuer: "Ethel Programming Computer Programming Services",
+        date: "August 3, 2026",
+        duration: "1 hr",
+        mode: "Online Webinar via Google Meet",
+        speaker: "Mr. Lemuel C. Condes",
+        screenshot: "assets/certifications/cyber-frontlines-2026.jpg"
+      },
+      {
+        title: "Building Secure Networks with Cisco Packet Tracer",
+        issuer: "Ethel Programming Computer Programming Services",
+        date: "August 3, 2026",
+        duration: "1 hr",
+        mode: "Online Webinar via Google Meet",
+        speaker: "",
+        screenshot: "assets/certifications/cisco-packet-tracer.jpg"
+      }
+    ]
+  },
+
+  /* ---------------------------------------------------------
      5. PROJECTS
      ------------------------------------------------------------
      Only real projects. Use `published: false` to keep a slot

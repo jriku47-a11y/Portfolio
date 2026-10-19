@@ -86,22 +86,23 @@ to match, so screen readers announce the current state.
 2. About Me
 3. Education
 4. Technical Skills
-5. Projects
-6. Problem-Solving Cases
-7. Cybersecurity Awareness
-8. AI Literacy
-9. Professional Presence (GitHub & LinkedIn)
-10. Resume
-11. Career Plan
-12. Final Reflection
-13. Contact
+5. Certifications
+6. Projects
+7. Problem-Solving Cases
+8. Cybersecurity Awareness
+9. AI Literacy
+10. Professional Presence (GitHub & LinkedIn)
+11. Resume
+12. Career Plan
+13. Final Reflection
+14. Contact
 
 ---
 
 ## Project structure
 
 ```
-index.html            All 13 sections (semantic markup + accessibility)
+index.html            All 14 sections (semantic markup + accessibility)
 css/style.css         Design system: tokens, layout, components, light + dark themes
 js/content.js         SINGLE SOURCE OF TRUTH — edit this to change content
 js/main.js            Renders content from config + all interactions
@@ -250,6 +251,26 @@ never advertise work that does not exist yet.
 
 Screenshots go in `assets/projects/`. If a screenshot is missing, the page shows a neutral
 wireframe placeholder instead of a broken image.
+
+### Adding a certification
+
+Certificates live in `certifications.items`. Put the scan in `assets/certifications/` and point
+`screenshot` at it. Leave `screenshot` empty to show the neutral placeholder instead.
+
+```js
+{
+  title: "Course or webinar title",
+  issuer: "The organising body",
+  date: "August 5, 2026",
+  duration: "1 hr",
+  mode: "Online Webinar via Google Meet",
+  speaker: "Mr. Speaker Name",        // "" to hide the line
+  screenshot: "assets/certifications/your-certificate.jpg"
+}
+```
+
+The section states plainly that these are **certificates of participation, not professional
+licences** — keep that wording accurate if you add a real accredited certification.
 
 ### Adding a problem-solving case
 
