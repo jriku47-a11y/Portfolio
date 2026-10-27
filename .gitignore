@@ -50,3 +50,10 @@ desktop.ini
 *.log
 logs/
 *.tmp
+
+# ============================================================
+# LARGE SOURCE FILES — keep out of the repository
+# ============================================================
+# The original 126 MB recording lives here only for editing.
+# A compressed copy ships as assets/mock-interview.mp4.
+Andren Mock Interview.mp4

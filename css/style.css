@@ -431,6 +431,17 @@ section.block{padding:4.4rem 0;scroll-margin-top:calc(var(--header-h) + 14px)}
 .media-note{display:block;font-family:var(--font-mono);font-size:.71rem;color:var(--muted-2);line-height:1.5}
 
 /* ============================================================
+   VIDEO (mock interview)
+   ============================================================ */
+.video-card{display:flex;flex-direction:column;gap:.9rem}
+.video-wrap{
+  position:relative;border-radius:var(--radius-sm);overflow:hidden;
+  background:var(--surface-2);border:1px solid var(--rule-strong);
+  box-shadow:var(--shadow-sm);
+}
+.video{display:block;width:100%;height:auto;max-height:480px;background:var(--surface-2)}
+.video-wrap video::-webkit-media-controls-panel{background:linear-gradient(180deg,transparent,rgba(0,0,0,.35))}
+/* ============================================================
    CERTIFICATIONS
    ============================================================ */
 .cert-card{display:flex;flex-direction:column;overflow:hidden;padding:0}
